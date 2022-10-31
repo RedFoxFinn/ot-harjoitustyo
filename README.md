@@ -1,6 +1,6 @@
 # Ohjelmistotekniikka
 
-## Laskarit
+## Laskaritehtävät
 
 ### Viikko 1
 
