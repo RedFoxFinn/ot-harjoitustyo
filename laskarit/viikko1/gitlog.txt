@@ -1,5 +1,5 @@
 commit 7132a8850f69d67b41b39815849828a2154f3a5f
-Author: Antti Aarnio <laborantti.antti@gmail.com>
+Author: Antti Aarnio <************@gmail.com>
 Date:   Mon Oct 31 17:10:08 2022 +0200
 
     poistettu tiedostoja/file1, uudelleennimetty tiedostoja/file2 > file22
@@ -9,7 +9,7 @@ Date:   Mon Oct 31 17:10:08 2022 +0200
  2 files changed, 0 insertions(+), 0 deletions(-)
 
 commit 1aba665478ecd6cb811b086fb44dc08d5a4b6163
-Author: Antti Aarnio <laborantti.antti@gmail.com>
+Author: Antti Aarnio <************@gmail.com>
 Date:   Mon Oct 31 17:06:38 2022 +0200
 
     tiedostoja/file(1-3) lisäys
@@ -20,7 +20,7 @@ Date:   Mon Oct 31 17:06:38 2022 +0200
  3 files changed, 0 insertions(+), 0 deletions(-)
 
 commit 2a143bc9f9e904c917570771012dd88dfb5bba76
-Author: Antti Aarnio <laborantti.antti@gmail.com>
+Author: Antti Aarnio <************@gmail.com>
 Date:   Mon Oct 31 17:02:47 2022 +0200
 
     eka.txt;kolmas.txt lisäykset
@@ -30,7 +30,7 @@ Date:   Mon Oct 31 17:02:47 2022 +0200
  2 files changed, 4 insertions(+)
 
 commit 6d5187b0c177a504d02440c3a9c0c3e0dba223c5
-Author: Antti Aarnio <laborantti.antti@gmail.com>
+Author: Antti Aarnio <************@gmail.com>
 Date:   Mon Oct 31 17:00:38 2022 +0200
 
     tiedosto.txt > eka.txt
@@ -39,7 +39,7 @@ Date:   Mon Oct 31 17:00:38 2022 +0200
  1 file changed, 0 insertions(+), 0 deletions(-)
 
 commit 343e9fed4e54942766eaf2f2699b54ca372305ac
-Author: Antti Aarnio <laborantti.antti@gmail.com>
+Author: Antti Aarnio <************@gmail.com>
 Date:   Mon Oct 31 16:59:18 2022 +0200
 
     toinen.txt poisto
@@ -48,7 +48,7 @@ Date:   Mon Oct 31 16:59:18 2022 +0200
  1 file changed, 1 deletion(-)
 
 commit 580cf4b479413bf62d6552204382f2138d94c5d6
-Author: Antti Aarnio <laborantti.antti@gmail.com>
+Author: Antti Aarnio <************@gmail.com>
 Date:   Mon Oct 31 16:56:35 2022 +0200
 
     tiedosto.txt poisto ja lisäys
@@ -57,7 +57,7 @@ Date:   Mon Oct 31 16:56:35 2022 +0200
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 commit b77b676c32495ece9897e6d39229a911940191dd
-Author: Antti Aarnio <laborantti.antti@gmail.com>
+Author: Antti Aarnio <************@gmail.com>
 Date:   Mon Oct 31 16:55:08 2022 +0200
 
     tiedosto.txt lipsum lisäys
@@ -66,7 +66,7 @@ Date:   Mon Oct 31 16:55:08 2022 +0200
  1 file changed, 2 insertions(+)
 
 commit 42816a6b2fc40d4ef4af9fc47a771c1e03fa2aa9
-Author: Antti Aarnio <laborantti.antti@gmail.com>
+Author: Antti Aarnio <************@gmail.com>
 Date:   Mon Oct 31 16:51:06 2022 +0200
 
     stuff/neljas.txt lisäys
@@ -75,7 +75,7 @@ Date:   Mon Oct 31 16:51:06 2022 +0200
  1 file changed, 0 insertions(+), 0 deletions(-)
 
 commit 7a8c9cd1cf6596f118b8d7331fc18705c90d5480
-Author: Antti Aarnio <laborantti.antti@gmail.com>
+Author: Antti Aarnio <************@gmail.com>
 Date:   Mon Oct 31 16:50:12 2022 +0200
 
     toinen.txt;kolmas.txt muutokset
@@ -85,7 +85,7 @@ Date:   Mon Oct 31 16:50:12 2022 +0200
  2 files changed, 2 insertions(+)
 
 commit e16b786817f6b00f731dd3dac78d59336ab5bf7b
-Author: Antti Aarnio <laborantti.antti@gmail.com>
+Author: Antti Aarnio <************@gmail.com>
 Date:   Mon Oct 31 16:48:59 2022 +0200
 
     uusi lisäys
@@ -94,7 +94,7 @@ Date:   Mon Oct 31 16:48:59 2022 +0200
  1 file changed, 0 insertions(+), 0 deletions(-)
 
 commit 4f281e3e37fbd22a3437a075a64e9f08fc54d00b
-Author: Antti Aarnio <laborantti.antti@gmail.com>
+Author: Antti Aarnio <************@gmail.com>
 Date:   Mon Oct 31 16:47:28 2022 +0200
 
     muutos ja lisäys
@@ -104,7 +104,7 @@ Date:   Mon Oct 31 16:47:28 2022 +0200
  2 files changed, 1 insertion(+)
 
 commit 7c25b62a5ed85138817953ef0bdd02d3f788e27d
-Author: Antti Aarnio <laborantti.antti@gmail.com>
+Author: Antti Aarnio <************@gmail.com>
 Date:   Mon Oct 31 16:45:54 2022 +0200
 
     tiedosto.txt luotu
