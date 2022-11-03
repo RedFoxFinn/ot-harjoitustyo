@@ -9,3 +9,9 @@
 [*gitlog.__txt__*](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/laskarit/viikko1/gitlog.txt)
 
 ### Viikko 2
+
+[*coverage.__png__*](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/laskarit/viikko2/coverage.png)
+
+## Harjoitustyö
+
+
