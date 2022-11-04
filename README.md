@@ -22,7 +22,7 @@ Monopoli
     Pelilauta "1" -- "2" Noppa
     Pelilauta "1" -- "2..8" Pelaaja
     Pelaaja "1" -- "1" Pelinappula
-    Pelinappula ..> Ruutu
+    Pelinappula "0..8" -- "1" Ruutu
     Pelaaja ..> Noppa
     class Pelaaja
     class Pelilauta
