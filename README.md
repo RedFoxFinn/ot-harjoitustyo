@@ -16,6 +16,8 @@
 
 [*monopoli.__md__*](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/laskarit/viikko3/monopoli.md)
 
+[*moottori.__md__*](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/laskarit/viikko3/moottori.md)
+
 ## Harjoitustyö
 
 [Pantry *README.__md__*](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/pantry/README.md)
