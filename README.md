@@ -18,6 +18,8 @@
 
 [*moottori.__md__*](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/laskarit/viikko3/moottori.md)
 
+[*hsl.__md__*](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/laskarit/viikko3/hsl.md)
+
 ## Harjoitustyö
 
 [Pantry *README.__md__*](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/pantry/README.md)
