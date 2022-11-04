@@ -10,6 +10,9 @@
     Pelinappula ..> Ruutu
     Pelaaja ..> Noppa
     Pelaaja ..> Raha
+    Raha ..|> Asema
+    Raha ..|> Laitos
+    Raha ..|> Katu
     Ruutu --> Ruutu
     Aloitusruutu --o Ruutu
     Vankila --o Ruutu
