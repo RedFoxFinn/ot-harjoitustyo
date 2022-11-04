@@ -14,24 +14,7 @@
 
 ### Viikko 3
 
-Monopoli
-
-```mermaid
-  classDiagram
-    Pelilauta "1" -- "40" Ruutu
-    Pelilauta "1" -- "2" Noppa
-    Pelilauta "1" -- "2..8" Pelaaja
-    Pelaaja "1" -- "1" Pelinappula
-    Pelinappula "0..8" -- "1" Ruutu
-    Pelinappula ..> Ruutu
-    Pelaaja ..> Noppa
-    class Pelaaja
-    class Pelilauta
-    class Pelinappula
-    class Noppa
-    class Ruutu
-
-```
+[*monopoli.__md__*](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/laskarit/viikko3/monopoli.md)
 
 ## Harjoitustyö
 
