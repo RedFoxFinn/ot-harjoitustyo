@@ -12,6 +12,25 @@
 
 [*coverage.__png__*](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/laskarit/viikko2/coverage.png)
 
+### Viikko 3
+
+Monopoli
+
+```mermaid
+  classDiagram
+    Pelilauta "1" -- "40" Ruutu
+    Pelilauta "1" -- "2" Noppa
+    Pelilauta "1" -- "2..8" Pelaaja
+    Pelaaja "1" -- "1" Pelinappula
+    Pelinappula <.. Ruutu
+    class Pelaaja
+    class Pelilauta
+    class Pelinappula
+    class Noppa
+    class Ruutu
+
+```
+
 ## Harjoitustyö
 
 [Pantry *README.__md__*](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/pantry/README.md)
