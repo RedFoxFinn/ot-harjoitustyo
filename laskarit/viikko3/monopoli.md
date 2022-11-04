@@ -9,7 +9,7 @@
     Pelinappula "0..8" -- "1" Ruutu
     Pelinappula ..> Ruutu
     Pelaaja ..> Noppa
-    Aloitusruutu --o Ruutu
+    Aloitusruutu --|o Ruutu
     Pelilauta "1" -- "1" Aloitusruutu
     Pelilauta "1" -- "1" Vankila
     Pelilauta "1" -- "4" Asema
