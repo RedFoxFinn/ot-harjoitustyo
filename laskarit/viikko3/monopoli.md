@@ -9,6 +9,7 @@
     Pelinappula "0..8" -- "1" Ruutu
     Pelinappula ..> Ruutu
     Pelaaja ..> Noppa
+    Aloitusruutu --o Ruutu
     Pelilauta "1" -- "1" Aloitusruutu
     Pelilauta "1" -- "1" Vankila
     Pelilauta "1" -- "4" Asema
@@ -23,11 +24,17 @@
     Pelinappula ..> Katu
     Pelinappula ..> Asema
     Pelinappula ..> Laitos
+    Pelinappula ..> Yhteismaa
+    Pelinappula ..> Sattuma
+    Yhteismaa "*" -- "*" Kortti
+    Sattuma "*" -- "*" Kortti
+    Kortti ..> Toiminto
     class Pelaaja
     class Pelilauta
     class Pelinappula
     class Noppa
     class Ruutu
+    class Kortti
     class Toiminto
     class Sattuma
     class Yhteismaa
