@@ -21,6 +21,8 @@
     Asema --o Ruutu
     Laitos --o Ruutu
     Katu --o Ruutu
+    Ruutu ..> Toiminto
+    Katu "1" -- "1" Nimi
     Pelilauta "1" -- "1" Aloitusruutu
     Pelilauta "1" -- "1" Vankila
     Pelilauta "1" -- "4" Asema
@@ -54,6 +56,7 @@
     class Vankila
     class Aloitusruutu
     class Katu
+    class Nimi
     class Raha
     class Talo
     class Hotelli
