@@ -9,6 +9,7 @@
     Pelinappula "0..8" -- "1" Ruutu
     Pelinappula ..> Ruutu
     Pelaaja ..> Noppa
+    Pelaaja ..> Raha
     Ruutu --> Ruutu
     Aloitusruutu --o Ruutu
     Vankila --o Ruutu
