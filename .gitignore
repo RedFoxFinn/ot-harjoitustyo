@@ -4,4 +4,4 @@
 .pytest_cache
 htmlcov
 __pycache__
-
+*.db
