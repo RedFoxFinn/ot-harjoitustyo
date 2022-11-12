@@ -13,17 +13,23 @@ class Pantry_UI:
   # connect or create database
   def __init__(self, root, db_path):
     self._root = root
-    self._db = dbh.Database_handler(True, db_path)
+    self._entry = None
+    self._db = dbh.Database_handler(False, db_path)
+
+  def _click(self):
+    entry_value = self._entry.get()
+    if len(entry_value) > 0:
+      self._db.add_subtype(entry_value)
   
   # start Pantry application
   def start(self, label_text, button_text):
     label = ttk.Label(master = self._root, text = label_text)
-    button = ttk.Button(master = self._root, text = button_text)
-    entry = ttk.Entry(master = self._root)
+    button = ttk.Button(master = self._root, text = button_text, command=self._click)
+    self._entry = ttk.Entry(master = self._root)
 
     label.pack()
     button.pack()
-    entry.pack()
+    self._entry.pack()
 
 window = Tk()
 window.title("Pantry")

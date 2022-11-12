@@ -3,15 +3,16 @@
 
 import sqlite3
 import re
+import os
 
 # class implementation for Database_handler, class that will handle all interaction with sql-db
 
 class Database_handler:
   # protected private variable for class that predefines strings for table creation step of a new database
   __table_creation = [
-    "CREATE TABLE Products (id INTEGER PRIMARY KEY, name TEXT, type INTEGER, storage_life INTEGER)",
-    "CREATE TABLE Types (id INTEGER PRIMARY KEY, type_name TEXT, subtype INTEGER)",
-    "CREATE TABLE Subtypes (id INTEGER PRIMARY KEY, subtype_name)"
+    "CREATE TABLE Products (id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE, type INTEGER, storage_life INTEGER)",
+    "CREATE TABLE Types (id INTEGER PRIMARY KEY, type_name TEXT NOT NULL UNIQUE, subtype INTEGER)",
+    "CREATE TABLE Subtypes (id INTEGER PRIMARY KEY, subtype_name TEXT NOT NULL UNIQUE)"
   ]
 
   # protected private variable for checking the database path
@@ -29,7 +30,7 @@ class Database_handler:
 
   # class initialization, if db_set is True and database contains string with 
   def __init__(self,db_set,database):
-    if db_set and database != None and self.__check_db_path(database):
+    if db_set and database != None and self.__check_db_path(database) and os.path.isfile(database):
       self._db = sqlite3.connect(database)
     else:
       self._db = sqlite3.connect("src/database/pantry.db")
@@ -38,6 +39,24 @@ class Database_handler:
           self._db.execute(item)
         except:
           print("table already exists")
+    self._db.isolation_level=None
+
+  # function for adding new subtype with its name as argument
+  # adding fails, if exact same name already exists in db
+  def add_subtype(self,name:str):
+    try:
+      self._db.execute("INSERT INTO Subtypes (subtype_name) VALUES (?)",[name])
+      print(f"Subtype {name} addition successful")
+      return True
+    except:
+      print(f"Subtype {name} addition failed")
+      return False
+  
+  # function for fetching subtypes from db
+  # returns None if no subtypes in db
+  def get_subtypes(self):
+    subtypes = self._db.execute("SELECT subtype_name FROM Subtypes").fetchall()
+    return subtypes if len(subtypes) > 0 else None
 
   def __str__(self):
     return "Pantry tietokanta"
