@@ -11,7 +11,7 @@ class Database_handler:
   # protected private variable for class that predefines strings for table creation step of a new database
   __table_creation = [
     "CREATE TABLE Products (id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE, type INTEGER NOT NULL, storage_life INTEGER NOT NULL)",
-    "CREATE TABLE Types (id INTEGER PRIMARY KEY, type_name TEXT NOT NULL UNIQUE, subtype INTEGER)",
+    "CREATE TABLE Types (id INTEGER PRIMARY KEY, type_name TEXT NOT NULL, subtype INTEGER UNIQUE)",
     "CREATE TABLE Subtypes (id INTEGER PRIMARY KEY, subtype_name TEXT NOT NULL UNIQUE)"
   ]
 
@@ -37,7 +37,11 @@ class Database_handler:
     "Viljatuotteet"
   ]
 
-  __type_creation = []
+  __type_creation = [
+    "Juomat",
+    "Ruoat",
+    "Raaka-aineet"
+  ]
 
 
   # protected private variable for checking the database path
@@ -66,6 +70,13 @@ class Database_handler:
           print("table already exists")
       for item in self.__subtype_creation:
         self.add_subtype(item)
+      for item in self.__type_creation:
+        if item == "Raaka-aineet":
+          for sub in self.__subtype_creation:
+            id = self._db.execute("SELECT id FROM Subtypes WHERE subtype_name=?", [sub]).fetchone()[0]
+            self.add_type(item, id)
+        else:
+          self.add_type(item)
     self._db.isolation_level=None
 
   # function for adding new type with its name as argument
