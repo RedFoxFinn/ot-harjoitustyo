@@ -11,8 +11,8 @@ class Database_handler:
   # protected private variable for class that predefines strings for table creation step of a new database
   __table_creation = [
     "CREATE TABLE Products (id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE, type INTEGER NOT NULL, storage_life INTEGER NOT NULL)",
-    "CREATE TABLE Types (id INTEGER PRIMARY KEY, type_name TEXT NOT NULL, subtype INTEGER UNIQUE)",
-    "CREATE TABLE Subtypes (id INTEGER PRIMARY KEY, subtype_name TEXT NOT NULL UNIQUE)"
+    "CREATE TABLE Types (id INTEGER PRIMARY KEY, type_name TEXT NOT NULL UNIQUE)",
+    "CREATE TABLE Subtypes (id INTEGER PRIMARY KEY, subtype_name TEXT NOT NULL UNIQUE, type INTEGER NOT NULL)"
   ]
 
   __subtype_creation = [
@@ -57,7 +57,12 @@ class Database_handler:
     
     return True if str_length and str_pt1_validity and str_pt2_validity else False
 
-  # class initialization, if db_set is True and database contains string with 
+  # class initialization
+  # > if db_set is True
+  # > database contains valid database path
+  # > path leads to valid file
+  # >> connect to database file
+  # > else create new database with automatic table creation
   def __init__(self,db_set,database):
     if db_set and database != None and self.__check_db_path(database) and os.path.isfile(database):
       self._db = sqlite3.connect(database)
@@ -68,50 +73,44 @@ class Database_handler:
           self._db.execute(item)
         except:
           print("table already exists")
-      for item in self.__subtype_creation:
-        self.add_subtype(item)
+      
       for item in self.__type_creation:
-        if item == "Raaka-aineet":
-          for sub in self.__subtype_creation:
-            id = self._db.execute("SELECT id FROM Subtypes WHERE subtype_name=?", [sub]).fetchone()[0]
-            self.add_type(item, id)
-        else:
-          self.add_type(item)
+        self.add_type(item)
+      
+      __type_id = self._db.execute("SELECT id FROM Types WHERE type_name=?",["Raaka-aineet"]).fetchone()[0]
+      
+      for item in self.__subtype_creation:
+        self.add_subtype(item, __type_id)
+
     self._db.isolation_level=None
 
   # function for adding new type with its name as argument
   # optional argument subtype (integer which is the id of subtype)
-  def add_type(self,name:str,subtype:int=None):
-    if subtype != None:
-      try:
-        self._db.execute("INSERT INTO Types (type_name, subtype) VALUES (?,?)", [name,subtype])
-        print(f"Type {name} addition successful (subtype {subtype})")
-        return True
-      except:
-        print(f"Type {name} addition failed (subtype {subtype})")
-    else:
-      try:
-        self._db.execute("INSERT INTO Types (type_name) VALUES (?)", [name])
-        print(f"Type {name} addition successful")
-        return True
-      except:
-        print(f"Type {name} addition failed")
+  def add_type(self,name:str):
+    try:
+      self._db.execute("INSERT INTO Types (type_name) VALUES (?)", [name])
+      return True
+    except:
+      return False
 
   # function for fetching types from db
   # returns None if no types in db
   def get_types(self):
     types = self._db.execute("SELECT type_name FROM Types").fetchall()
     return types if len(types) > 0 else None
+  
+  # function for fetching number of types in db
+  def get_typecount(self):
+    count = self._db.execute("SELECT count(*) FROM Types").fetchall()[0][0]
+    return count
 
   # function for adding new subtype with its name as argument
   # adding fails, if exact same name already exists in db
-  def add_subtype(self,name:str):
+  def add_subtype(self,name:str, type:int):
     try:
-      self._db.execute("INSERT INTO Subtypes (subtype_name) VALUES (?)",[name])
-      print(f"Subtype {name} addition successful")
+      self._db.execute("INSERT INTO Subtypes (subtype_name, type) VALUES (?,?)",[name,type])
       return True
     except:
-      print(f"Subtype {name} addition failed")
       return False
   
   # function for fetching subtypes from db
@@ -119,6 +118,11 @@ class Database_handler:
   def get_subtypes(self):
     subtypes = self._db.execute("SELECT subtype_name FROM Subtypes").fetchall()
     return subtypes if len(subtypes) > 0 else None
+
+  # function for fetching number of subtypes in db
+  def get_subtypecount(self):
+    count = self._db.execute("SELECT count(*) FROM Subtypes").fetchall()[0][0]
+    return count
 
   # function for deleting a subtype from db with its name as argument
   # TODO
