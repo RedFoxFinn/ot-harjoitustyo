@@ -19,7 +19,7 @@ class Pantry_UI:
   def _click(self):
     entry_value = self._entry.get()
     if len(entry_value) > 0:
-      self._db.add_subtype(entry_value)
+      self._db.get_types()
   
   # start Pantry application
   def start(self, label_text, button_text):

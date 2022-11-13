@@ -41,6 +41,12 @@ class Database_handler:
           print("table already exists")
     self._db.isolation_level=None
 
+  # function for fetching types from db
+  # returns None if no types in db
+  def get_types(self):
+    types = self._db.execute("SELECT type_name FROM Types").fetchall()
+    return types if len(types) > 0 else None
+
   # function for adding new subtype with its name as argument
   # adding fails, if exact same name already exists in db
   def add_subtype(self,name:str):
@@ -58,5 +64,9 @@ class Database_handler:
     subtypes = self._db.execute("SELECT subtype_name FROM Subtypes").fetchall()
     return subtypes if len(subtypes) > 0 else None
 
+  # function for deleting a subtype from db with its name as argument
+  # TODO
+
+  # function for returning db status (???)
   def __str__(self):
     return "Pantry tietokanta"
