@@ -15,6 +15,31 @@ class Database_handler:
     "CREATE TABLE Subtypes (id INTEGER PRIMARY KEY, subtype_name TEXT NOT NULL UNIQUE)"
   ]
 
+  __subtype_creation = [
+    "Hedelmät",
+    "Juomajauheet",
+    "Juomatiivisteet",
+    "Kalat",
+    "Kasvikset",
+    "Leivonta",
+    "Lihat",
+    "Maitotuotteet",
+    "Marjat",
+    "Mausteet",
+    "Maustekastikkeet",
+    "Munat",
+    "Puolivalmisteet",
+    "Rasvat, öljyt",
+    "Ravintojauheet",
+    "Sokerit",
+    "Säilykkeet",
+    "Vihannekset",
+    "Viljatuotteet"
+  ]
+
+  __type_creation = []
+
+
   # protected private variable for checking the database path
   __db_path_re = ["src/database/", ".db"]
 
@@ -39,6 +64,8 @@ class Database_handler:
           self._db.execute(item)
         except:
           print("table already exists")
+      for item in self.__subtype_creation:
+        self.add_subtype(item)
     self._db.isolation_level=None
 
   # function for adding new type with its name as argument
