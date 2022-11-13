@@ -10,7 +10,7 @@ import os
 class Database_handler:
   # protected private variable for class that predefines strings for table creation step of a new database
   __table_creation = [
-    "CREATE TABLE Products (id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE, type INTEGER, storage_life INTEGER)",
+    "CREATE TABLE Products (id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE, type INTEGER NOT NULL, storage_life INTEGER NOT NULL)",
     "CREATE TABLE Types (id INTEGER PRIMARY KEY, type_name TEXT NOT NULL UNIQUE, subtype INTEGER)",
     "CREATE TABLE Subtypes (id INTEGER PRIMARY KEY, subtype_name TEXT NOT NULL UNIQUE)"
   ]
@@ -40,6 +40,24 @@ class Database_handler:
         except:
           print("table already exists")
     self._db.isolation_level=None
+
+  # function for adding new type with its name as argument
+  # optional argument subtype (integer which is the id of subtype)
+  def add_type(self,name:str,subtype:int=None):
+    if subtype != None:
+      try:
+        self._db.execute("INSERT INTO Types (type_name, subtype) VALUES (?,?)", [name,subtype])
+        print(f"Type {name} addition successful (subtype {subtype})")
+        return True
+      except:
+        print(f"Type {name} addition failed (subtype {subtype})")
+    else:
+      try:
+        self._db.execute("INSERT INTO Types (type_name) VALUES (?)", [name])
+        print(f"Type {name} addition successful")
+        return True
+      except:
+        print(f"Type {name} addition failed")
 
   # function for fetching types from db
   # returns None if no types in db
