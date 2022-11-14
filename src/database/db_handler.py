@@ -6,11 +6,10 @@ import re
 import os
 
 # class implementation for Database_handler, class that will handle all interaction with sql-db
-
 class Database_handler:
   # protected private variable for class that predefines strings for table creation step of a new database
   __table_creation = [
-    "CREATE TABLE Products (id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE, type INTEGER NOT NULL, storage_life INTEGER NOT NULL)",
+    "CREATE TABLE Products (id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE, type INTEGER NOT NULL, subtype DEFAULT 0, storage_life INTEGER NOT NULL)",
     "CREATE TABLE Types (id INTEGER PRIMARY KEY, type_name TEXT NOT NULL UNIQUE)",
     "CREATE TABLE Subtypes (id INTEGER PRIMARY KEY, subtype_name TEXT NOT NULL UNIQUE, type INTEGER NOT NULL)"
   ]
@@ -64,7 +63,7 @@ class Database_handler:
   # >> connect to database file
   # > else create new database with automatic table creation
   def __init__(self,db_set,database):
-    if db_set and database != None and self.__check_db_path(database) and os.path.isfile(database):
+    if db_set and database != None and self.__check_db_path(database) and os.path.isfilget_subtypecounte(database):
       self._db = sqlite3.connect(database)
     else:
       self._db = sqlite3.connect("src/database/pantry.db")
@@ -83,6 +82,15 @@ class Database_handler:
         self.add_subtype(item, __type_id)
 
     self._db.isolation_level=None
+  
+  # function for adding new product with its name, type, subtype and storage_life as arguments
+
+  # function for fetching products from db
+  # returns None if no product in db
+  # joins Product with Type and conditionally joins with Subtype if Product.subtype has value greater than 0
+  def get_products(self):
+    products = self._db.execute("SELECT R.*, S.subtype_name AS subtype_name FROM (SELECT P.id AS pid, P.name AS pname, P.storage_life AS storage_life, T.type_name AS type_name, P.subtype AS sid FROM Products P LEFT JOIN Types T ON P.type=T.id) R LEFT JOIN Subtypes S ON R.sid AND R.sid=S.id").fetchall()
+    return products if len(products) > 0 else None
 
   # function for adding new type with its name as argument
   # optional argument subtype (integer which is the id of subtype)
@@ -116,7 +124,7 @@ class Database_handler:
   # function for fetching subtypes from db
   # returns None if no subtypes in db
   def get_subtypes(self):
-    subtypes = self._db.execute("SELECT subtype_name FROM Subtypes").fetchall()
+    subtypes = self._db.execute("SELECT type_name, subtype_name FROM Subtypes S LEFT JOIN Types T ON S.type=T.id").fetchall()
     return subtypes if len(subtypes) > 0 else None
 
   # function for fetching number of subtypes in db
