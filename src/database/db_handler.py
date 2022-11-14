@@ -84,6 +84,13 @@ class Database_handler:
     self._db.isolation_level=None
   
   # function for adding new product with its name, type, subtype and storage_life as arguments
+  # name (string), type (int) and storage_life (int) needed, subtype (int) optional
+  def add_product(self, name:str,type:int,storage_life:int,subtype:int=0):
+    try:
+      self._db.execute("INSERT INTO Products (name, type, subtype, storage_life) VALUES (?,?,?,?)", [name, type, subtype, storage_life])
+      return True
+    except:
+      return False
 
   # function for fetching products from db
   # returns None if no product in db
