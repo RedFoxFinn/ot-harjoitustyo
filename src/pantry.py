@@ -3,7 +3,8 @@
 
 from tkinter import Tk, ttk
 
-from database import db_handler as dbh
+from database.db_handler import Database_handler as dbh
+from ui.add_product import AddProduct
 
 # class implementation for the base of Pantry UI
 
@@ -13,28 +14,20 @@ class Pantry_UI:
   # connect or create database
   def __init__(self, root, db_path):
     self._root = root
-    self._entry = None
-    self._db = dbh.Database_handler(False, db_path)
+    self._current_view = None
 
-  def _click(self):
-    entry_value = self._entry.get()
-    if len(entry_value) > 0:
-      self._db.get_types()
-  
   # start Pantry application
-  def start(self, label_text, button_text):
-    label = ttk.Label(master = self._root, text = label_text)
-    button = ttk.Button(master = self._root, text = button_text, command=self._click)
-    self._entry = ttk.Entry(master = self._root)
-
-    label.pack()
-    button.pack()
-    self._entry.pack()
+  def start(self, label_text):
+    self._show_add_product()
+  
+  def _show_add_product(self):
+    self._current_view = AddProduct(self._root)
+    self._current_view.pack()
 
 window = Tk()
 window.title("Pantry")
 
 ui = Pantry_UI(window,"src/database/pantry.db")
-ui.start("Pantry", "nappi")
+ui.start("Pantry")
 
 window.mainloop()
