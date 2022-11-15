@@ -1,5 +1,7 @@
 # Pantry - changelog
 
+## viikko 3
+
 - sovelluksen taustatoiminnoista tietokannan käsittely luotu:
   - uuden kannan luominen, olemassaolevan yhdistäminen
   - tyyppien (Types) ja alatyyppien (Subtypes) luonti, haku ja laskeminen
