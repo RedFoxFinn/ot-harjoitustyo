@@ -3,7 +3,7 @@
 
 from tkinter import Tk, ttk
 
-from database.db_handler import Database_handler as dbh
+from database.db_handler import Database_handler
 from ui.add_product import AddProduct
 
 # class implementation for the base of Pantry UI
@@ -18,10 +18,11 @@ class Pantry_UI:
 
   # start Pantry application
   def start(self, label_text):
+    self._dbh = Database_handler(True, "src/database/pantry_db.db")
     self._show_add_product()
   
   def _show_add_product(self):
-    self._current_view = AddProduct(self._root)
+    self._current_view = AddProduct(self._root, self._dbh)
     self._current_view.pack()
 
 window = Tk()
