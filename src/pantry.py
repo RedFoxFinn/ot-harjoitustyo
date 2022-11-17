@@ -8,6 +8,7 @@ from ui.add_product import AddProduct
 
 # class implementation for the base of Pantry UI
 
+
 class PantryUI:
     # class initialization
     # connect or create database
@@ -24,10 +25,11 @@ class PantryUI:
         self._current_view = AddProduct(self._root, self._dbh)
         self._current_view.pack()
 
+
 window = Tk()
 window.title("Pantry")
 
-ui = PantryUI(window,"src/database/pantry.db")
+ui = PantryUI(window, "src/database/pantry.db")
 ui.start()
 
 window.mainloop()
