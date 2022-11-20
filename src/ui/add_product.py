@@ -1,3 +1,4 @@
+# depends on tkinter, tkcalendar, re (regex) and datetime
 
 import tkinter as tk
 from tkinter import ttk, messagebox, constants
@@ -43,10 +44,24 @@ class AddProduct:
             _subtype = 0
         success = False
 
+        def _get_type():
+            _t = _type[:2]
+            if _t[0] == '0':
+                return int(_t[1])
+            else:
+                return int(f"{_t[0]}{_t[1]}")
+
+        def _get_subtype():
+            _s = _subtype[:2]
+            if _s[0] == '0':
+                return int(_s[1])
+            else:
+                return int(f"{_s[0]}{_s[1]}")
+
         success = self._db.add_product(
-            _name, _type,
+            _name, _get_type(),
             datetime.datetime(_storage_life.year,_storage_life.month,_storage_life.day).timestamp(),
-            subtype=_subtype, count=_number_of)
+            subtype=_get_subtype(), count=_number_of)
 
         if success:
             self._name.delete(0, 'end')

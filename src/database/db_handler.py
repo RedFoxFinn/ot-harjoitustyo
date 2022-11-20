@@ -180,8 +180,8 @@ class DatabaseHandler:
             SELECT id, number_of FROM Products WHERE id=?
         """, [product_id]).fetchone()
         if subtract and _product[1]-change == 0:
-            return self.remove_product(id)
-        if subtract:
+            return self.remove_product(product_id)
+        elif subtract:
             try:
                 self._db.execute("""
                     UPDATE Products SET number_of=number_of-? WHERE id=?
