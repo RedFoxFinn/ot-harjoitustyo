@@ -28,6 +28,7 @@ class PantryUI:
 
 window = Tk()
 window.title("Pantry")
+window.geometry("420x320")
 
 ui = PantryUI(window, "src/database/pantry.db")
 ui.start()

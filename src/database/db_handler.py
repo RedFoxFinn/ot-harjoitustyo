@@ -211,7 +211,7 @@ class DatabaseHandler:
     # function for fetching types from db
     # returns None if no types in db
     def get_types(self):
-        types = self._db.execute("SELECT type_name FROM Types").fetchall()
+        types = self._db.execute("SELECT type_name, id FROM Types").fetchall()
         return types if len(types) > 0 else None
 
     # function for fetching number of types in db
@@ -234,7 +234,7 @@ class DatabaseHandler:
     # returns None if no subtypes in db
     def get_subtypes(self):
         subtypes = self._db.execute("""
-            SELECT type_name, subtype_name FROM Subtypes S LEFT JOIN Types T ON S.type=T.id
+            SELECT type_name, subtype_name, S.id FROM Subtypes S LEFT JOIN Types T ON S.type=T.id
         """).fetchall()
         return subtypes if len(subtypes) > 0 else None
 
