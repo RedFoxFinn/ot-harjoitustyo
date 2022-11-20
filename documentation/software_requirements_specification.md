@@ -34,6 +34,8 @@ Tuotteelle lisätään tiedot:
 - jos raaka-aine: (hiilihydraatit, proteiinit, rasvat, säilykkeet, puolivalmiste, jauhot)
 - säilyvyys
 
+- lukumäärä (lisätty viikolla 3)
+
 Puolivalmiste = ruokajauhe, juomajauhe, juomatiiviste tai "lisää vain vesi" -tyyppinen ruoka
 
 #### Listanäkymä
@@ -92,6 +94,8 @@ Following information are required and associated to the product:
 - type (food, drink, ingredient)
 - if ingredient: (carbs, proteins, fats, canned, convenience, flours)
 - storage life
+
+- number of (added on week 3)
 
 #### List view
 

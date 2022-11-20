@@ -8,3 +8,12 @@
   - tuotteiden luominen, hakeminen, laskeminen, vähentäminen ja poistaminen
   - testit yllämainituille
   - alustava UI tuotteiden lisäämiseen
+
+## viikko 4
+
+- sovelluksen lähdekoodin tyylin tarkistus pylint-paketin avulla
+- sovelluksen lähdekoodin automaattinen muotoilu autopep8-paketin avulla
+- korjattu muotoilu- ja tyylivirheet
+- korjattu testit
+- tuotteen lisäyksen UI-toiminnallisuus valmis ja sovitettu DatabaseHandleriin
+- tuotteen lisäyksen tyypin ja alatyypin valinnan korjaus lisäyksen yhteydessä
