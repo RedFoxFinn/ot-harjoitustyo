@@ -16,4 +16,8 @@
 - korjattu muotoilu- ja tyylivirheet
 - korjattu testit
 - tuotteen lisäyksen UI-toiminnallisuus valmis ja sovitettu DatabaseHandleriin
-- tuotteen lisäyksen tyypin ja alatyypin valinnan korjaus lisäyksen yhteydessä
+- tuotteen lisäyksen tyypin ja alatyypin valinnan korjaus UI:n taustatoiminnoissa tietokantaan lisäyksen yhteydessä
+- tuotetyypin mukaan hakeminen tuotelukua haettaessa + testien päivitys
+- alustava pohja tilastoille (UI)
+- lisätty mahdollisuus siirtyä tilasto- ja lisäysnäkymien välillä
+- muutettu hakemiston alihakemisto database -> services

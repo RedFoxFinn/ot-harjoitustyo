@@ -1,37 +1,37 @@
 import unittest
 import os
-from database.db_handler import DatabaseHandler
+from services.db_handler import DatabaseHandler
 
 test_db_paths = ["src/tests/test_db.db",
                  "src/database/pantry.db",
                  "src/database/test_db.db"]
 
 test_db_types = [
-    ('Juomat',1),
-    ('Ruoat',2),
-    ('Raaka-aineet',3)
+    ('Juomat', 1),
+    ('Ruoat', 2),
+    ('Raaka-aineet', 3)
 ]
 
 test_db_subtypes = [
-    ('Raaka-aineet', 'Hedelmät',1),
-    ('Raaka-aineet', 'Juomajauheet',2),
-    ('Raaka-aineet', 'Juomatiivisteet',3),
-    ('Raaka-aineet', 'Kalat',4),
-    ('Raaka-aineet', 'Kasvikset',5),
-    ('Raaka-aineet', 'Leivonta',6),
-    ('Raaka-aineet', 'Lihat',7),
-    ('Raaka-aineet', 'Maitotuotteet',8),
-    ('Raaka-aineet', 'Marjat',9),
-    ('Raaka-aineet', 'Mausteet',10),
-    ('Raaka-aineet', 'Maustekastikkeet',11),
-    ('Raaka-aineet', 'Munat',12),
-    ('Raaka-aineet', 'Puolivalmisteet',13),
-    ('Raaka-aineet', 'Rasvat, öljyt',14),
-    ('Raaka-aineet', 'Ravintojauheet',15),
-    ('Raaka-aineet', 'Sokerit',16),
-    ('Raaka-aineet', 'Säilykkeet',17),
-    ('Raaka-aineet', 'Vihannekset',18),
-    ('Raaka-aineet', 'Viljatuotteet',19)
+    ('Raaka-aineet', 'Hedelmät', 1),
+    ('Raaka-aineet', 'Juomajauheet', 2),
+    ('Raaka-aineet', 'Juomatiivisteet', 3),
+    ('Raaka-aineet', 'Kalat', 4),
+    ('Raaka-aineet', 'Kasvikset', 5),
+    ('Raaka-aineet', 'Leivonta', 6),
+    ('Raaka-aineet', 'Lihat', 7),
+    ('Raaka-aineet', 'Maitotuotteet', 8),
+    ('Raaka-aineet', 'Marjat', 9),
+    ('Raaka-aineet', 'Mausteet', 10),
+    ('Raaka-aineet', 'Maustekastikkeet', 11),
+    ('Raaka-aineet', 'Munat', 12),
+    ('Raaka-aineet', 'Puolivalmisteet', 13),
+    ('Raaka-aineet', 'Rasvat, öljyt', 14),
+    ('Raaka-aineet', 'Ravintojauheet', 15),
+    ('Raaka-aineet', 'Sokerit', 16),
+    ('Raaka-aineet', 'Säilykkeet', 17),
+    ('Raaka-aineet', 'Vihannekset', 18),
+    ('Raaka-aineet', 'Viljatuotteet', 19)
 ]
 
 test_db_products = [
@@ -40,7 +40,9 @@ test_db_products = [
     ['Soijakastike', 3, 1671910001, 11],
     (1, 'Soijakastike', 1671910001, 1, 'Raaka-aineet', 11, 'Maustekastikkeet'),
     ['Maitosuklaa 200g', 2, 1671910001, 0, 2],
-    (1, 'Maitosuklaa 200g', 1671910001, 2, 'Ruoat', 0, None)
+    (1, 'Maitosuklaa 200g', 1671910001, 2, 'Ruoat', 0, None),
+    ['Taloussuklaa 200g', 2, 1671910001, 0, 5],
+    (2, 'Taloussuklaa 200g', 1671910001, 5, 'Ruoat', 0, None)
 ]
 
 
@@ -180,3 +182,55 @@ class Test_DatabaseHandler(unittest.TestCase):
         self.assertEqual(resp2, True)
         _products = self.__dbh.get_products()
         self.assertEqual(_products, None)
+
+    def test_db_product_count(self):
+        self._remove_db_files()
+        self.__dbh = DatabaseHandler(False, test_db_paths[2])
+        count = self.__dbh.get_productcount()
+        self.assertEqual(count, 0)
+        resp = self.__dbh.add_product(
+            test_db_products[4][0], test_db_products[4][1], test_db_products[4][2], count=test_db_products[4][4])
+        self.assertEqual(resp, True)
+        count = self.__dbh.get_productcount()
+        self.assertGreater(count, 0)
+
+    def test_db_product_count_type(self):
+        self._remove_db_files()
+        self.__dbh = DatabaseHandler(False, test_db_paths[2])
+        count = self.__dbh.get_productcount()
+        self.assertEqual(count, 0)
+        resp = self.__dbh.add_product(
+            test_db_products[4][0], test_db_products[4][1], test_db_products[4][2], count=test_db_products[4][4])
+        self.assertEqual(resp, True)
+        count = self.__dbh.get_productcount(
+            product_type=test_db_products[2][1])
+        self.assertEqual(count, 0)
+        count = self.__dbh.get_productcount(
+            product_type=test_db_products[4][1])
+        self.assertGreater(count, 0)
+
+    def test_db_product_count_total(self):
+        self._remove_db_files()
+        self.__dbh = DatabaseHandler(False, test_db_paths[2])
+        count = self.__dbh.get_productcount(distinct=False)
+        self.assertEqual(count, 0)
+        resp = self.__dbh.add_product(
+            test_db_products[4][0], test_db_products[4][1], test_db_products[4][2], count=test_db_products[4][4])
+        self.assertEqual(resp, True)
+        count = self.__dbh.get_productcount(distinct=False)
+        self.assertEqual(count, test_db_products[4][4])
+
+    def test_db_product_count_type_total(self):
+        self._remove_db_files()
+        self.__dbh = DatabaseHandler(False, test_db_paths[2])
+        count = self.__dbh.get_productcount(distinct=False)
+        self.assertEqual(count, 0)
+        resp = self.__dbh.add_product(
+            test_db_products[4][0], test_db_products[4][1], test_db_products[4][2], count=test_db_products[4][4])
+        self.assertEqual(resp, True)
+        resp = self.__dbh.add_product(
+            test_db_products[6][0], test_db_products[6][1], test_db_products[6][2], count=test_db_products[6][4])
+        self.assertEqual(resp, True)
+        count = self.__dbh.get_productcount(
+            product_type=test_db_products[6][1], distinct=False)
+        self.assertEqual(count, test_db_products[6][4]+test_db_products[4][4])

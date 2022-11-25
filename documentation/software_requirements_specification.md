@@ -19,11 +19,11 @@ Näytetään latausruutu.
 
 ### Sovelluksen käynnistyttyä
 
-#### Perusnäkymä
+#### Perusnäkymä [alustava versio]
 
 Sovelluksen käynnistyttyä avautuu perusnäkymä, jossa näytetään inventaarion tilastointia.
 
-#### Lisäysnäkymä
+#### Lisäysnäkymä [valmis]
 
 Lisäysnäkymässä voidaan lisätä uusia tuotteita inventaarioon.
 

@@ -3,8 +3,9 @@
 
 from tkinter import Tk
 
-from database.db_handler import DatabaseHandler
+from services.db_handler import DatabaseHandler
 from ui.add_product import AddProduct
+from ui.stats import Stats
 
 # class implementation for the base of Pantry UI
 
@@ -19,10 +20,29 @@ class PantryUI:
 
     # start Pantry application
     def start(self):
+        self._show_stats()
+
+    def _handle_add_product(self):
+        self._hide_current_view()
         self._show_add_product()
 
+    def _handle_stats(self):
+        self._hide_current_view()
+        self._show_stats()
+
+    def _hide_current_view(self):
+        if self._current_view:
+            self._current_view.destroy()
+        self._current_view = None
+
     def _show_add_product(self):
-        self._current_view = AddProduct(self._root, self._dbh)
+        self._current_view = AddProduct(
+            self._root, self._dbh, to_stats=self._handle_stats)
+        self._current_view.pack()
+
+    def _show_stats(self):
+        self._current_view = Stats(
+            self._root, self._dbh, to_add=self._handle_add_product)
         self._current_view.pack()
 
 
