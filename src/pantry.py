@@ -50,7 +50,7 @@ window = Tk()
 window.title("Pantry")
 window.geometry("800x600")
 
-ui = PantryUI(window, "src/database/pantry.db")
+ui = PantryUI(window, "src/services/pantry.db")
 ui.start()
 
 window.mainloop()

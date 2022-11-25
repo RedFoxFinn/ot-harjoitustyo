@@ -6,7 +6,7 @@ import datetime
 class Stats:
     def __init__(self, root, dbh, to_add):
         self._root = root
-        self._db = dbh
+        self._db = dbhdatabase
         self._go_to_add = to_add
         self._initialize()
 

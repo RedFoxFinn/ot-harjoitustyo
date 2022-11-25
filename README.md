@@ -9,3 +9,5 @@
 [Työaikakirjanpito](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/pantry/documentation/working_time.md)
 
 [*CHANGELOG.__md__*](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/pantry/documentation/CHANGELOG.md)
+
+[*architecture.__md__*](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/pantry/documentation/architecture.md)

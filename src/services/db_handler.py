@@ -60,7 +60,7 @@ class DatabaseHandler:
     ]
 
     # protected private variable for checking the database path
-    __db_path_re = ["src/database/", ".db"]
+    __db_path_re = ["src/services/", ".db"]
 
     # protected private function to check validity of database path string
     # minimum length 17 characters (path + '.db' + db file name at least 1 character)
@@ -104,7 +104,7 @@ class DatabaseHandler:
             for item in self.__subtype_creation:
                 self.add_subtype(item, __type_id)
         else:
-            self._db = sqlite3.connect("src/database/pantry.db")
+            self._db = sqlite3.connect("src/services/pantry.db")
             for item in self.__table_creation:
                 try:
                     self._db.execute(item)
