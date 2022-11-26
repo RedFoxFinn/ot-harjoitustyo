@@ -95,8 +95,8 @@ class DatabaseHandler:
                 try:
                     self._db.execute(item)
                 except:  # pylint: disable=bare-except
-                         # try: always requires except: even if it would be this simple
-                         # therefore I was required to add disable
+                    # try: always requires except: even if it would be this simple
+                    # therefore I was required to add disable
                     print("table already exists")
             for item in self.__type_creation:
                 self.add_type(item)
@@ -109,8 +109,8 @@ class DatabaseHandler:
                 try:
                     self._db.execute(item)
                 except:  # pylint: disable=bare-except
-                         # try: always requires except: even if it would be this simple
-                         # therefore I was required to add disable
+                    # try: always requires except: even if it would be this simple
+                    # therefore I was required to add disable
                     print("table already exists")
             for item in self.__type_creation:
                 self.add_type(item)
@@ -140,8 +140,8 @@ class DatabaseHandler:
                 ) VALUES (?,?,?,?,?)""", [name, type_of, subtype, storage_life, count])
             return True
         except:  # pylint: disable=bare-except
-                 # try: always requires except: even if it would be this simple
-                 # therefore I was required to add disable
+            # try: always requires except: even if it would be this simple
+            # therefore I was required to add disable
             return False
 
     # function for fetching products from db
@@ -202,8 +202,8 @@ class DatabaseHandler:
             self._db.execute("DELETE FROM Products WHERE id=?", [product_id])
             return True
         except:  # pylint: disable=bare-except
-                 # try: always requires except: even if it would be this simple
-                 # therefore I was required to add disable
+            # try: always requires except: even if it would be this simple
+            # therefore I was required to add disable
             return False
 
     # function for updating number of products with certain id
@@ -220,8 +220,8 @@ class DatabaseHandler:
                 """, [change, product_id])
                 return True
             except:  # pylint: disable=bare-except
-                     # try: always requires except: even if it would be this simple
-                     # therefore I was required to add disable
+                # try: always requires except: even if it would be this simple
+                # therefore I was required to add disable
                 return False
         else:
             try:
@@ -230,8 +230,8 @@ class DatabaseHandler:
                 """, [change, product_id])
                 return True
             except:  # pylint: disable=bare-except
-                     # try: always requires except: even if it would be this simple
-                     # therefore I was required to add disable
+                # try: always requires except: even if it would be this simple
+                # therefore I was required to add disable
                 return False
 
     # function for adding new type with its name as argument
@@ -242,8 +242,8 @@ class DatabaseHandler:
                 "INSERT INTO Types (type_name) VALUES (?)", [name])
             return True
         except:  # pylint: disable=bare-except
-                 # try: always requires except: even if it would be this simple
-                 # therefore I was required to add disable
+            # try: always requires except: even if it would be this simple
+            # therefore I was required to add disable
             return False
 
     # function for fetching types from db
@@ -266,8 +266,8 @@ class DatabaseHandler:
             """, [name, type_of])
             return True
         except:  # pylint: disable=bare-except
-                 # try: always requires except: even if it would be this simple
-                 # therefore I was required to add disable
+            # try: always requires except: even if it would be this simple
+            # therefore I was required to add disable
             return False
 
     # function for fetching subtypes from db

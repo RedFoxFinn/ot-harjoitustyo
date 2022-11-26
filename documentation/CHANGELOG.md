@@ -21,3 +21,6 @@
 - alustava pohja tilastoille (UI)
 - lisätty mahdollisuus siirtyä tilasto- ja lisäysnäkymien välillä
 - muutettu hakemiston alihakemisto database -> services
+- korjattu testeistä tietokantatiedoston polku
+
+## viikko 5

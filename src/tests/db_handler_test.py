@@ -3,8 +3,8 @@ import os
 from services.db_handler import DatabaseHandler
 
 test_db_paths = ["src/tests/test_db.db",
-                 "src/database/pantry.db",
-                 "src/database/test_db.db"]
+                 "src/services/pantry.db",
+                 "src/services/test_db.db"]
 
 test_db_types = [
     ('Juomat', 1),
