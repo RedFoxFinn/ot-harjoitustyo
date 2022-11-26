@@ -3,11 +3,11 @@
 
 ## Rakenne
 
-Ohjelman rakenne noudattelee kolmitasoita kerrosarkkitehtuuria.
+Ohjelman rakenne noudattelee kaksitasoista kerrosarkkitehtuuria.
 
 Koodin pakkausrakenne on seuraavanlainen:
 
-[kuva tänne]
+![](./pictures/pakkauskaavio.png)
 
 Pakkaus _ui_ sisältää käyttöliittymänäkymistä, _services_ sovelluslogiikasta ja pysyväistallennuksesta vastaavan koodin. Lisäksi pakkaus _entities_ sisältää luokkia, jotka kuvaavat ja hyödyntävät sovelluksen käyttämien tietueiden sisältöä.
 
