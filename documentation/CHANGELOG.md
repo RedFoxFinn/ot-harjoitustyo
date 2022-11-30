@@ -24,3 +24,8 @@
 - korjattu testeistä tietokantatiedoston polku
 
 ## viikko 5
+
+- DatabaseHandlerissa lisätty ominaisuus lisätä riville lukumäärään, mikäli lisättävän tuotteen tiedot vastaavat jo kannassa olevaa riviä
+- päivitetty testit
+- tilastojen esittämiseen lisätty toiminnallisuus vanhenevien ja vanhentuneiden tuotteiden määrän ja rivimäärän näyttämiseksi
+  - stats ja DatabaseHandler

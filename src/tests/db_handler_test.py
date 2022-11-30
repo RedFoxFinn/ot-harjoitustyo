@@ -137,6 +137,22 @@ class Test_DatabaseHandler(unittest.TestCase):
         self.assertEqual(len(_products), 1)
         self.assertIn(test_db_products[5], _products)
 
+    def test_db_adding_product_with_existing_entry(self):
+        self._remove_db_files()
+        self.__dbh = DatabaseHandler(False, test_db_paths[2])
+        resp = self.__dbh.add_product(
+            test_db_products[4][0], test_db_products[4][1], test_db_products[4][2], count=test_db_products[4][4])
+        self.assertEqual(resp, True)
+        _products = self.__dbh.get_products()
+        self.assertEqual(len(_products), 1)
+        self.assertEqual(_products[0][3], test_db_products[4][4])
+        resp = self.__dbh.add_product(
+            test_db_products[4][0], test_db_products[4][1], test_db_products[4][2], count=test_db_products[4][4])
+        self.assertEqual(resp, True)
+        _products = self.__dbh.get_products()
+        self.assertEqual(len(_products), 1)
+        self.assertEqual(_products[0][3], 2*test_db_products[4][4])
+
     def test_db_subtract_from_count(self):
         self._remove_db_files()
         self.__dbh = DatabaseHandler(False, test_db_paths[2])

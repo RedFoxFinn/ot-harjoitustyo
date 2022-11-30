@@ -64,8 +64,8 @@ class AddProduct:
                 return int(f"{_s[0]}{_s[1]}")
 
         success = self._db.add_product(
-            _name, _get_type(),
-            datetime.datetime(
+            name=_name, type_of=_get_type(),
+            storage_life=datetime.datetime(
                 _storage_life.year, _storage_life.month, _storage_life.day).timestamp(),
             subtype=_get_subtype(), count=_number_of)
 
@@ -105,7 +105,7 @@ class AddProduct:
                 self._subtype.grid_remove()
 
         self._frame = ttk.Frame(master=self._root)
-        self._clicked_type.trace("w", _subtypes)
+        self._clicked_type.trace_add("write", _subtypes)
         label = ttk.Label(master=self._frame, text=self.__texts[0])
         back_to_stats = ttk.Button(
             self._frame, command=self._back_to_stats, text="Paluu")
