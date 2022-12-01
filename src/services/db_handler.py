@@ -39,6 +39,7 @@ class DatabaseHandler:
         "Juomatiivisteet",
         "Kalat",
         "Kasvikset",
+        "Kasvipohjaiset valmisteet",
         "Leivonta",
         "Lihat",
         "Maitotuotteet",
@@ -75,9 +76,7 @@ class DatabaseHandler:
         return bool(str_length and str_pt1_validity and str_pt2_validity)
 
     def __check_validity(self, db_path=None):
-        if db_path is not None:
-            return self.__check_db_path(db_path)
-        return False
+        return self.__check_db_path(db_path)
 
     def __fetch_typeid(self, typename: str):
         return self._db.execute("SELECT id FROM Types WHERE type_name=?", [typename]).fetchone()
@@ -187,16 +186,13 @@ class DatabaseHandler:
         expiring:bool=True,
         exp:int=_get_default_exp()):
         products = None
-        if expiring and not expired:
-            today = datetime.date.today()
-            current = datetime.datetime(today.year, today.month, today.day).timestamp()
-            products = self._db.execute("""
-                SELECT number_of FROM Products WHERE storage_life <= ? AND storage_life >= ?
-            """,[exp,current]).fetchall()
-        if not expiring and expired:
-            products = self._db.execute("""
-                SELECT number_of FROM Products WHERE storage_life < ?
-            """,[exp]).fetchall()
+        today = datetime.date.today()
+        current = datetime.datetime(today.year, today.month, today.day).timestamp()
+        products = self._db.execute("""
+            SELECT number_of FROM Products WHERE storage_life <= ? AND storage_life >= ?
+        """,[exp,current]).fetchall() if expiring else self._db.execute("""
+            SELECT number_of FROM Products WHERE storage_life < ?
+        """,[exp]).fetchall()
         return products
 
     # function for fetching number of products in db

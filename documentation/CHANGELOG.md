@@ -29,3 +29,5 @@
 - päivitetty testit
 - tilastojen esittämiseen lisätty toiminnallisuus vanhenevien ja vanhentuneiden tuotteiden määrän ja rivimäärän näyttämiseksi
   - stats ja DatabaseHandler
+- stats.py UI:n muotoiluja siistitty
+- aloitettu käyttöohjeiden kirjoittaminen manual.md -tiedostoon

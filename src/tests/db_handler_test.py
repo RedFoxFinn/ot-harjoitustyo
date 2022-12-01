@@ -18,27 +18,28 @@ test_db_subtypes = [
     ('Raaka-aineet', 'Juomatiivisteet', 3),
     ('Raaka-aineet', 'Kalat', 4),
     ('Raaka-aineet', 'Kasvikset', 5),
-    ('Raaka-aineet', 'Leivonta', 6),
-    ('Raaka-aineet', 'Lihat', 7),
-    ('Raaka-aineet', 'Maitotuotteet', 8),
-    ('Raaka-aineet', 'Marjat', 9),
-    ('Raaka-aineet', 'Mausteet', 10),
-    ('Raaka-aineet', 'Maustekastikkeet', 11),
-    ('Raaka-aineet', 'Munat', 12),
-    ('Raaka-aineet', 'Puolivalmisteet', 13),
-    ('Raaka-aineet', 'Rasvat, öljyt', 14),
-    ('Raaka-aineet', 'Ravintojauheet', 15),
-    ('Raaka-aineet', 'Sokerit', 16),
-    ('Raaka-aineet', 'Säilykkeet', 17),
-    ('Raaka-aineet', 'Vihannekset', 18),
-    ('Raaka-aineet', 'Viljatuotteet', 19)
+    ('Raaka-aineet', 'Kasvipohjaiset valmisteet', 6),
+    ('Raaka-aineet', 'Leivonta', 7),
+    ('Raaka-aineet', 'Lihat', 8),
+    ('Raaka-aineet', 'Maitotuotteet', 9),
+    ('Raaka-aineet', 'Marjat', 10),
+    ('Raaka-aineet', 'Mausteet', 11),
+    ('Raaka-aineet', 'Maustekastikkeet', 12),
+    ('Raaka-aineet', 'Munat', 13),
+    ('Raaka-aineet', 'Puolivalmisteet', 14),
+    ('Raaka-aineet', 'Rasvat, öljyt', 15),
+    ('Raaka-aineet', 'Ravintojauheet', 16),
+    ('Raaka-aineet', 'Sokerit', 17),
+    ('Raaka-aineet', 'Säilykkeet', 18),
+    ('Raaka-aineet', 'Vihannekset', 19),
+    ('Raaka-aineet', 'Viljatuotteet', 20)
 ]
 
 test_db_products = [
     ['Goatly deluxe', 1, 1671910001],
     (1, 'Goatly deluxe', 1671910001, 1, 'Juomat', 0, None),
-    ['Soijakastike', 3, 1671910001, 11],
-    (1, 'Soijakastike', 1671910001, 1, 'Raaka-aineet', 11, 'Maustekastikkeet'),
+    ['Soijakastike', 3, 1671910001, 12],
+    (1, 'Soijakastike', 1671910001, 1, 'Raaka-aineet', 12, 'Maustekastikkeet'),
     ['Maitosuklaa 200g', 2, 1671910001, 0, 2],
     (1, 'Maitosuklaa 200g', 1671910001, 2, 'Ruoat', 0, None),
     ['Taloussuklaa 200g', 2, 1671910001, 0, 5],
@@ -100,8 +101,8 @@ class Test_DatabaseHandler(unittest.TestCase):
     def test_db_contains_subtypes(self):
         self.__dbh = DatabaseHandler(False, test_db_paths[2])
         _subtypes = self.__dbh.get_subtypes()
-        self.assertEqual(len(_subtypes), 19)
-        self.assertEqual(self.__dbh.get_subtypecount(), 19)
+        self.assertEqual(len(_subtypes), 20)
+        self.assertEqual(self.__dbh.get_subtypecount(), 20)
         for s in test_db_subtypes:
             self.assertIn(s, _subtypes)
         self._remove_db_files()

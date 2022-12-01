@@ -19,9 +19,9 @@ Näytetään latausruutu.
 
 ### Sovelluksen käynnistyttyä
 
-#### Perusnäkymä [alustava]
+#### Tilastointinäkymä [tehty]
 
-Sovelluksen käynnistyttyä avautuu perusnäkymä, jossa näytetään inventaarion tilastointia.
+Sovelluksen käynnistyttyä avautuu perusnäkymäksi tilastointinäkymä, jossa näytetään inventaarion tilastointia.
 
 #### Lisäysnäkymä [tehty]
 
