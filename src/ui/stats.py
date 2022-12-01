@@ -27,7 +27,6 @@ class Stats:
                 product_type=t[1], distinct=False)
             _numbers_by_types.append((t[1], t[0], count))
         _expiring_products = self._db.get_products_by_storage_life(
-            expired=False,
             expiring=True,
             exp=datetime.datetime(
                 self._exp_soon_date.year,
@@ -37,7 +36,6 @@ class Stats:
         for e in _expiring_products:
             _expiring_products_total += e[0]
         _expired_products = self._db.get_products_by_storage_life(
-            expired=True,
             expiring=False,
             exp=datetime.datetime(
                 self._current_date.year,
@@ -48,12 +46,13 @@ class Stats:
             _expired_products_total += e[0]
 
         self._frame = ttk.Frame(master=self._root)
-        label = ttk.Label(master=self._frame, text="Stats")
+        label = ttk.Label(master=self._frame, text="Tilastointi")
         add_new = ttk.Button(
-            self._frame, command=self._go_to_add, text="Lisää tuote")
+            self._frame, command=self._go_to_add, text="Lisää tuote > ")
         _products_lf = ttk.LabelFrame(self._frame, text="Tuotteita")
         _types_lf = ttk.LabelFrame(self._frame, text="Tuotteet tyypeittäin")
-        _expiring_lf = ttk.LabelFrame(self._frame, text="Pian vanhenevat tuotteet")
+        _expiring_lf = ttk.LabelFrame(
+            self._frame, text="Pian vanhenevat tuotteet")
         _expired_lf = ttk.LabelFrame(self._frame, text="Vanhentuneet tuotteet")
         _products_label = ttk.Label(
             _products_lf, text="Tuoterivejä talletettuna %g" % _number_of_products)

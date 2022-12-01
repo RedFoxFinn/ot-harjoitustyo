@@ -108,7 +108,7 @@ class AddProduct:
         self._clicked_type.trace_add("write", _subtypes)
         label = ttk.Label(master=self._frame, text=self.__texts[0])
         back_to_stats = ttk.Button(
-            self._frame, command=self._back_to_stats, text="Paluu")
+            self._frame, command=self._back_to_stats, text=" < Tilastointi")
         button = ttk.Button(master=self._frame,
                             text=self.__texts[1], command=self._click_product)
         self._name = ttk.Entry(master=self._frame)
@@ -128,19 +128,19 @@ class AddProduct:
         number_of_label = ttk.Label(master=self._frame, text=self.__texts[5])
         subtype_label = ttk.Label(master=self._frame, text=self.__texts[6])
 
-        label.grid(row=0, column=1, columnspan=2, padx=4, pady=4)
-        back_to_stats.grid(row=0, column=0, padx=4, pady=4)
-        name_label.grid(row=1, column=0, padx=4, pady=4)
-        self._name.grid(row=1, column=1, padx=4, pady=4,
+        label.grid(row=0, column=1, columnspan=2, padx=8, pady=8)
+        back_to_stats.grid(row=0, column=0, padx=8, pady=8)
+        name_label.grid(row=1, column=0, padx=4, pady=12)
+        self._name.grid(row=1, column=1, padx=4, pady=12,
                         sticky=(constants.E, constants.W))
-        type_label.grid(row=2, column=0, padx=4, pady=4)
-        self._type.grid(row=2, column=1, padx=4, pady=4,
+        type_label.grid(row=2, column=0, padx=4, pady=12)
+        self._type.grid(row=2, column=1, padx=4, pady=12,
                         sticky=(constants.E, constants.W))
-        storage_life_label.grid(row=3, column=0, padx=4, pady=4)
-        self._storage_life.grid(row=3, column=1, padx=4,
+        storage_life_label.grid(row=3, column=0, padx=4, pady=12)
+        self._storage_life.grid(row=3, column=1, padx=12,
                                 pady=4, sticky=(constants.E, constants.W))
-        number_of_label.grid(row=4, column=0, padx=4, pady=4)
-        self._number_of.grid(row=4, column=1, padx=4, pady=4,
+        number_of_label.grid(row=4, column=0, padx=4, pady=12)
+        self._number_of.grid(row=4, column=1, padx=4, pady=12,
                              sticky=(constants.E, constants.W))
-        button.grid(row=6, column=1, padx=4, pady=4)
+        button.grid(row=6, column=1, padx=4, pady=12)
         self._frame.columnconfigure(1, weight=1, minsize=320)

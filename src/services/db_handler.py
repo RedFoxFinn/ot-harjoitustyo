@@ -130,23 +130,26 @@ class DatabaseHandler:
                     storage_life: int,
                     subtype: int = 0,
                     count: int = 1):
-        print(name,type_of,storage_life,subtype,count)
+        print(name, type_of, storage_life, subtype, count)
         product = self._db.execute("""
             SELECT P.id, P.number_of FROM Products P WHERE P.name=? AND P.type=? AND P.subtype=? AND P.storage_life=?
-        """,[name,type_of,subtype,storage_life]).fetchone()
+        """, [name, type_of, subtype, storage_life]).fetchone()
         print(product)
         try:
-            self._db.execute("""
-                UPDATE Products SET number_of=? WHERE id=?
-            """, [product[1]+count,product[0]]) if product != None else self._db.execute("""
-                INSERT INTO Products (
-                    name,
-                    type,
-                    subtype,
-                    storage_life,
-                    number_of
-                ) VALUES (?,?,?,?,?)
-            """, [name, type_of, subtype, storage_life, count])
+            if product is not None:
+                self._db.execute("""
+                    UPDATE Products SET number_of=? WHERE id=?
+                """, [product[1]+count, product[0]])
+            else:
+                self._db.execute("""
+                    INSERT INTO Products (
+                        name,
+                        type,
+                        subtype,
+                        storage_life,
+                        number_of
+                    ) VALUES (?,?,?,?,?)
+                """, [name, type_of, subtype, storage_life, count])
             return True
         except:  # pylint: disable=bare-except
             # try: always requires except: even if it would be this simple
@@ -175,24 +178,24 @@ class DatabaseHandler:
         """).fetchall()
         return products if len(products) > 0 else None
 
-    def _get_default_exp():
-        d = datetime.date.today()+datetime.timedelta(days=2)
-        return datetime.datetime(d.year,d.month,d.day).timestamp()
+    def _get_default_exp(self):
+        _date = datetime.date.today()+datetime.timedelta(days=2)
+        return datetime.datetime(_date.year, _date.month, _date.day).timestamp()
 
     # function for fetching expiring or expired products
     def get_products_by_storage_life(
-        self,
-        expired:bool=False,
-        expiring:bool=True,
-        exp:int=_get_default_exp()):
+            self,
+            expiring: bool = True,
+            exp: int = _get_default_exp):
         products = None
         today = datetime.date.today()
-        current = datetime.datetime(today.year, today.month, today.day).timestamp()
+        current = datetime.datetime(
+            today.year, today.month, today.day).timestamp()
         products = self._db.execute("""
             SELECT number_of FROM Products WHERE storage_life <= ? AND storage_life >= ?
-        """,[exp,current]).fetchall() if expiring else self._db.execute("""
+        """, [exp, current]).fetchall() if expiring else self._db.execute("""
             SELECT number_of FROM Products WHERE storage_life < ?
-        """,[exp]).fetchall()
+        """, [exp]).fetchall()
         return products
 
     # function for fetching number of products in db
