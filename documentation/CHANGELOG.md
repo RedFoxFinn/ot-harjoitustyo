@@ -31,3 +31,5 @@
   - stats ja DatabaseHandler
 - stats.py UI:n muotoiluja siistitty
 - aloitettu käyttöohjeiden kirjoittaminen manual.md -tiedostoon
+- lisätty toiminnallisuus vaihtaa näkymää listaukseen lisäyksestä ja tilastoinnista
+- lisätty listausnäkymä ilman listaustoimintoa
