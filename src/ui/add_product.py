@@ -11,7 +11,7 @@ class AddProduct:
     _type_default = [f"{0:02d} - valitse tyyppi"]
     _subtype_default = [f"{0:02d} - valitse alatyyppi"]
 
-    def __init__(self, root, dbh, to_stats):
+    def __init__(self, root, dbh, to_stats, to_list):
         self._root = root
         self._name = None
         self._type = None
@@ -21,6 +21,7 @@ class AddProduct:
         self._frame = None
         self._db = dbh
         self._back_to_stats = to_stats
+        self._go_to_list = to_list
         self._clicked_type = tk.StringVar(self._root)
         self._clicked_subtype = tk.StringVar(self._root)
         self._initialize()
@@ -109,6 +110,8 @@ class AddProduct:
         label = ttk.Label(master=self._frame, text=self.__texts[0])
         back_to_stats = ttk.Button(
             self._frame, command=self._back_to_stats, text=" < Tilastointi")
+        list_all = ttk.Button(
+            self._frame, command=self._go_to_list, text="Näytä tuotteet > ")
         button = ttk.Button(master=self._frame,
                             text=self.__texts[1], command=self._click_product)
         self._name = ttk.Entry(master=self._frame)
@@ -130,6 +133,7 @@ class AddProduct:
 
         label.grid(row=0, column=1, columnspan=2, padx=8, pady=8)
         back_to_stats.grid(row=0, column=0, padx=8, pady=8)
+        list_all.grid(row=0, column=2, padx=8, pady=8)
         name_label.grid(row=1, column=0, padx=4, pady=12)
         self._name.grid(row=1, column=1, padx=4, pady=12,
                         sticky=(constants.E, constants.W))

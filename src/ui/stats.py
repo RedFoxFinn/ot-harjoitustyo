@@ -4,10 +4,11 @@ import datetime
 
 
 class Stats:
-    def __init__(self, root, dbh, to_add):
+    def __init__(self, root, dbh, to_add, to_list):
         self._root = root
         self._db = dbh
         self._go_to_add = to_add
+        self._go_to_list = to_list
         self._initialize()
 
     def destroy(self):
@@ -49,6 +50,9 @@ class Stats:
         label = ttk.Label(master=self._frame, text="Tilastointi")
         add_new = ttk.Button(
             self._frame, command=self._go_to_add, text="Lisää tuote > ")
+        list_all = ttk.Button(
+            self._frame, command=self._go_to_list, text="Näytä tuotteet > "
+        )
         _products_lf = ttk.LabelFrame(self._frame, text="Tuotteita")
         _types_lf = ttk.LabelFrame(self._frame, text="Tuotteet tyypeittäin")
         _expiring_lf = ttk.LabelFrame(
@@ -73,6 +77,7 @@ class Stats:
 
         add_new.grid(row=0, column=0, padx=8, pady=8)
         label.grid(row=0, column=1, padx=8, pady=8)
+        list_all.grid(row=0, column=2, padx=8, pady=8)
         _products_lf.grid(row=1, column=1, padx=4, pady=12)
         _products_label.grid(row=2, column=1, padx=4, pady=4)
         _types_lf.grid(row=3, column=1, padx=4, pady=12)
