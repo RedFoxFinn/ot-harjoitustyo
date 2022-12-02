@@ -10,4 +10,6 @@
 
 [*CHANGELOG.__md__*](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/pantry/documentation/CHANGELOG.md)
 
-[*architecture.__md__*](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/pantry/documentation/architecture.md)
+[arkkitehtuuri](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/pantry/documentation/arkkitehtuuri.md)
+
+[Käyttöohje](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/pantry/documentation/manual.md)
