@@ -33,3 +33,7 @@
 - aloitettu käyttöohjeiden kirjoittaminen manual.md -tiedostoon
 - lisätty toiminnallisuus vaihtaa näkymää listaukseen lisäyksestä ja tilastoinnista
 - lisätty listausnäkymä ilman listaustoimintoa
+- lisätty listausnäkymään painikkeet suodatusta varten, suodatustoiminnallisuus ei valmistunut vielä
+- lisätty listausnäkymään toiminnallisuus näyttää kaikki talletetut tuotteet
+  - tuotteen nimi, lukumäärä ja päiväys korostuu punaisella, mikäli vanhentunut ja oranssilla, mikäli päiväys on lähempänä kuin kaksi päivää
+- muokattu DatabaseHandlerin get_products palauttamaan kyselyn tuotteet nousevasti päiväyksen mukaan ja toissijaisesti aakkosellisesti nousevasti

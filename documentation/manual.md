@@ -25,8 +25,7 @@ Näkymässä näytetään sovellukseen talletettujen tietojen tilastointia seura
   - vanhentuneiden tuoterivien lukumäärä
   - vanhentuneiden tuotteiden kokonaismäärä
 
-Lisäksi näkymässä on painike, jolla voidaan siirtyä lisäysnäkymään
-Lisäksi näkymään lisätään myöhemmin painike, jolla voidaan siirtyä listausnäkymään
+Lisäksi näkymässä on painike, jolla voidaan siirtyä lisäysnäkymään sekä painike, jolla voidaan siirtyä listausnäkymään
 
 ### Lisäys
 
@@ -38,7 +37,21 @@ Näkymässä näytetään sovellukseen lisättävien tuotteiden lisäyslomake, j
 - Numerokenttä Lukumäärä (tuotteiden määrän riville syöttö)
 - Pudotusvalikko Alatyyppi (tuotteen alatyypin valinta, HUOM: käytössä ja esillä vain, jos tyypiksi on valittu 03 - Raaka-aineet)
 
-Lisäksi näkymässä on painike, jolla voidaan siirtyä tilastointinäkymään
-Lisäksi näkymään lisätään myöhemmin painike, jolla voidaan siirtyä listausnäkymään
+Lisäksi näkymässä on painike, jolla voidaan siirtyä tilastointinäkymään sekä painike, jolla voidaan siirtyä listausnäkymään
 
 ### Listaus [kehitys kesken]
+
+Näkymässä näytetään sovelluksen tietokantaan lisättyjen tuotteiden listauksen. Järjestys on vanhenemisjärjestyksessä ensimmäisenä vanhentuvat edellä nousevalla päiväyksellä ja toissijaisesti aakkosellisesti nousevasti.
+
+Näkymän tuotteen nimike, lukumäärä ja päiväys korostetaan oranssilla, mikäli päiväys on enintään kahden päivän päässä nykyhetkestä ja punaisella, mikäli tuoterivi on vanhentunut.
+
+Tuoterivien suodatukseen on painikkeet, mutta toiminnallisuus ei ole valmis vielä.
+
+Lisäksi näkymässä on painike, jolla voidaan siirtyä tilastointinäkymään sekä painike, jolla voidaan siirtyä lisäysnäkymään
+
+Tuotteista listausnäkymässä näytetään seuraavat tiedot:
+
+- Nimike
+- Lukumäärä
+- Päiväys
+- Tyyppi tai alatyyppi

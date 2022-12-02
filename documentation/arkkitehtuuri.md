@@ -13,14 +13,11 @@ Pakkaus _ui_ sisältää käyttöliittymänäkymistä, _services_ sovelluslogiik
 
 ## Käyttöliittymä
 
-Käyttöliittymä sisältää kaksi erillistä näkymää:
+Käyttöliittymä sisältää kolme erillistä näkymää:
 
 - sovelluksen käytössä olevien tietojen tilastotiedot   [valmis]
 - uusien tuotteiden lisäys                              [valmis]
-
-Lisäksi toteutettavat näkymät:
-
-- sovelluksen käytössä olevien tietojen listaus         [todo]
+- sovelluksen käytössä olevien tietojen listaus         [alustava]
 
 Jokainen näkymä on toteutettu omana luokkanaan. Oletuksena sovellus avautuu tilastotietoja esittävään näkymään. Sovelluksen näkymistä näytetään kerrallaan vain yksi. Näkymien esittämisestä vastaa PantryUI-luokka. Käyttöliittymä on pyritty eristämään muusta sovelluslogiikasta omiksi yksiköikseen. Käyttöliittymäluokista kutsutaan services-hakemistoon eriytettyä DatabaseHandler-luokkaa ja sen metodeja, jotka toteuttavat tietokantatoiminnot SQLite-tietokantaan.
 
@@ -32,6 +29,7 @@ Käyttöliittymästä uusia tietoja lisätessä sovelluksen sisäinen tila tilas
 - Lukumäärä   - lukuna
 - Alatyyppi   - valinta pudotusvalikosta (vain tyypillä "Raaka-aineet")
 
+Kolmantena näkymänä sovelluksella on listausnäkymä, jossa esitetään listamuodossa sovelluksen käyttämään tietokantaan talletetut tuotteet vanhenemisjärjestyksessä ja aakkosittain.
 ## Sovelluslogiikka
 
 ## Tietojen pysyväistallennus

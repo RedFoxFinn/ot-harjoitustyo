@@ -174,8 +174,9 @@ class DatabaseHandler:
                         P.subtype AS sid FROM
                             Products P LEFT JOIN Types T
                                 ON P.type=T.id) R LEFT JOIN Subtypes S
-                                    ON R.sid AND R.sid=S.id
+                                    ON R.sid AND R.sid=S.id ORDER BY R.storage_life ASC, R.pname ASC
         """).fetchall()
+        print(products)
         return products if len(products) > 0 else None
 
     def _get_default_exp(self):
