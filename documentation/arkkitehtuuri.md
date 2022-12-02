@@ -32,6 +32,7 @@ Käyttöliittymästä uusia tietoja lisätessä sovelluksen sisäinen tila tilas
 Kolmantena näkymänä sovelluksella on listausnäkymä, jossa esitetään listamuodossa sovelluksen käyttämään tietokantaan talletetut tuotteet vanhenemisjärjestyksessä ja aakkosittain.
 ## Sovelluslogiikka
 
+![](./pictures/sovelluslogiikka.png)
 ## Tietojen pysyväistallennus
 
 Sovelluksen tietojen pysyväistallennus on toteutettu paikallisesti SQL-tyyppisellä SQLite 3 -tietokannalla.
