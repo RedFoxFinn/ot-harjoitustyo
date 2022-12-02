@@ -1,5 +1,7 @@
 # Ohjelmistotekniikka
 
+Kurssiprojektina toteutettu inventaariosovellus Pantry
+
 ## Harjoitustyö
 
 [Vaatimusmäärittely](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/documentation/software_requirements_specification.md)
@@ -11,3 +13,5 @@
 [arkkitehtuuri](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/documentation/arkkitehtuuri.md)
 
 [Käyttöohje](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/documentation/manual.md)
+
+[Viikon 5 release](https://github.com/RedFoxFinn/ot-harjoitustyo/releases/tag/viikko5)

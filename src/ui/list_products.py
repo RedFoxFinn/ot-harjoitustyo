@@ -103,6 +103,7 @@ class ListProducts:
         else:
             ttk.Label(self._frame, text="Ei tuotteita :(").grid(
                 row=2, column=1, padx=4, pady=4)
+        self._frame.columnconfigure((1,2,3,4), weight=1, minsize=64)
 
     def destroy(self):
         self._frame.destroy()
