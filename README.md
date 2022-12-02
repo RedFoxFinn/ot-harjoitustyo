@@ -2,14 +2,12 @@
 
 ## Harjoitustyö
 
-[Pantry *README.__md__*](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/pantry/README.md)
+[Vaatimusmäärittely](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/documentation/software_requirements_specification.md)
 
-[Vaatimusmäärittely](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/pantry/documentation/software_requirements_specification.md)
+[Työaikakirjanpito](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/documentation/working_time.md)
 
-[Työaikakirjanpito](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/pantry/documentation/working_time.md)
+[*CHANGELOG.__md__*](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/documentation/CHANGELOG.md)
 
-[*CHANGELOG.__md__*](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/pantry/documentation/CHANGELOG.md)
+[arkkitehtuuri](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/documentation/arkkitehtuuri.md)
 
-[arkkitehtuuri](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/pantry/documentation/arkkitehtuuri.md)
-
-[Käyttöohje](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/pantry/documentation/manual.md)
+[Käyttöohje](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/documentation/manual.md)
