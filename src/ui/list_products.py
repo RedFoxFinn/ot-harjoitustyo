@@ -98,9 +98,9 @@ class ListProducts:
             self._frame, command=self._back_to_stats, text=" < Tilastointi")
         self._add_new = ttk.Button(
             self._frame, command=self._go_to_add, text="Lisää tuote > ")
-        self._label.grid(row=0, column=1, columnspan=4, padx=8, pady=8)
+        self._label.grid(row=0, column=1, columnspan=6, padx=8, pady=8)
         self._back_to_stats_button.grid(row=0, column=0, padx=8, pady=8)
-        self._add_new.grid(row=0, column=5, padx=8, pady=8)
+        self._add_new.grid(row=0, column=7, padx=8, pady=8)
         _filter_all.grid(row=1, column=1, padx=4, pady=8)
         _filter_drinks.grid(row=1, column=2, padx=4, pady=8)
         _filter_foods.grid(row=1, column=3, padx=4, pady=8)
@@ -129,7 +129,7 @@ class ListProducts:
                         id=item[0],
                         remove=True),
                         text="Poista").grid(
-                            row=index+2, column=5, padx=4, pady=4)
+                            row=index+2, column=7, padx=4, pady=4)
                 else:
                     ttk.Button(self._frame, command=lambda: self._update_product(
                         id=item[0],
@@ -153,7 +153,10 @@ class ListProducts:
         else:
             ttk.Label(self._frame, text="Ei tuotteita :(").grid(
                 row=2, column=1, padx=4, pady=4)
-        self._frame.columnconfigure((1, 2, 3, 4), weight=1, minsize=64)
+        self._frame.columnconfigure((1, 2, 3), weight=1, minsize=80)
+        self._frame.columnconfigure(4, weight=1, minsize=92)
+        self._frame.columnconfigure((5,6), weight=1, minsize=36)
+        self._frame.columnconfigure(7, weight=1, minsize=80)
 
     def destroy(self):
         self._frame.destroy()
