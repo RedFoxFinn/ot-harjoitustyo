@@ -55,7 +55,7 @@ class PantryUI:
     def _show_list_products(self):
         self._current_view = ListProducts(
             self._root, self._dbh, to_stats=self._handle_stats,
-            to_add=self._handle_add_product)
+            to_add=self._handle_add_product, refresh=self._handle_list_products)
         self._current_view.pack()
 
 
