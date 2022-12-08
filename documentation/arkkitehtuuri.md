@@ -17,7 +17,7 @@ Käyttöliittymä sisältää kolme erillistä näkymää:
 
 - sovelluksen käytössä olevien tietojen tilastotiedot   [valmis]
 - uusien tuotteiden lisäys                              [valmis]
-- sovelluksen käytössä olevien tietojen listaus         [alustava]
+- sovelluksen käytössä olevien tietojen listaus         [valmis]
 
 Jokainen näkymä on toteutettu omana luokkanaan. Oletuksena sovellus avautuu tilastotietoja esittävään näkymään. Sovelluksen näkymistä näytetään kerrallaan vain yksi. Näkymien esittämisestä vastaa PantryUI-luokka. Käyttöliittymä on pyritty eristämään muusta sovelluslogiikasta omiksi yksiköikseen. Käyttöliittymäluokista kutsutaan services-hakemistoon eriytettyä DatabaseHandler-luokkaa ja sen metodeja, jotka toteuttavat tietokantatoiminnot SQLite-tietokantaan.
 
@@ -95,7 +95,7 @@ Näkymässä näytetään sovellukseen talletettujen tietojen tilastointia seura
   - vanhentuneiden tuoterivien lukumäärä
   - vanhentuneiden tuotteiden kokonaismäärä
 
-Lisäksi näkymässä on painike, jolla voidaan siirtyä lisäysnäkymään
+Lisäksi näkymässä on painike, jolla voidaan siirtyä lisäysnäkymään ja painike, jolla voidaan siirtyä listausnäkymään
 
 ### Lisäysnäkymä (add_product)
 
@@ -107,4 +107,22 @@ Näkymässä näytetään sovellukseen lisättävien tuotteiden lisäyslomake, j
 - Numerokenttä Lukumäärä (tuotteiden määrän riville syöttö)
 - Pudotusvalikko Alatyyppi (tuotteen alatyypin valinta, HUOM: käytössä ja esillä vain, jos tyypiksi on valittu 03 - Raaka-aineet)
 
-Lisäksi näkymässä on painike, jolla voidaan siirtyä tilastointinäkymään
+Lisäksi näkymässä on painike, jolla voidaan siirtyä tilastointinäkymään ja painike, jolla voidaan siirtyä listausnäkymään
+
+### Listausnäkymä (list_products)
+
+Näkymässä näytetään sovellukseen talletetut tiedot listamuodossa vanhenemisjärjestyksessä. Tuotteiden tiedot, jotka esitetään:
+
+- Tuote(nimi)
+- Riville talletettujen tuotteiden määrä
+- Parasta ennen tai viimeinen käyttöpäivä (vvvv-kk-pp)
+- Tuotteen tyyppi tai alatyyppi
+
+Lisäksi jokaisella tuoterivillä on mahdollisuus poistaa tuoterivi.
+Lisäksi jokaisella tuotteella, joka ei ole vanhentunut, on mahdollisuus lisätä tai vähentää lukumäärää
+
+Tuote, joka on voimassa, merkitään mustalla fontilla.
+Tuote, jolla säilyvyyttä on enintään kaksi päivää jäljellä, merkitään oranssilla fontilla.
+Tuote, joka on vanhentunut, merkitään punaisella fontilla.
+
+Lisäksi näkymässä on painike, jolla voidaan siirtyä tilastointinäkymään ja painike, jolla voidaan siirtyä lisäysnäkymään
