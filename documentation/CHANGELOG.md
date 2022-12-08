@@ -37,3 +37,11 @@
 - lisätty listausnäkymään toiminnallisuus näyttää kaikki talletetut tuotteet
   - tuotteen nimi, lukumäärä ja päiväys korostuu punaisella, mikäli vanhentunut ja oranssilla, mikäli päiväys on lähempänä kuin kaksi päivää
 - muokattu DatabaseHandlerin get_products palauttamaan kyselyn tuotteet nousevasti päiväyksen mukaan ja toissijaisesti aakkosellisesti nousevasti
+
+## viikko 6
+
+- pantry.py & list_products.py lisätty toiminnallisuus päivittää listanäkymä tietokannan sisällön muuttuessa (tuoterivin poisto / lukumäärän muutos)
+- list_products lisätty toiminnallisuus lisätä tai vähentää tuotteiden määrää rivillä
+- list_products lisätty toiminnallisuus poistaa tuoterivi
+- muokattu listausnäkymän sarakeleveyksiä
+- lisätty docstring-dokumentaatio coodiin google-formaatilla
