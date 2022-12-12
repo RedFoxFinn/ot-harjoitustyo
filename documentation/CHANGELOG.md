@@ -45,3 +45,14 @@
 - list_products lisätty toiminnallisuus poistaa tuoterivi
 - muokattu listausnäkymän sarakeleveyksiä
 - lisätty docstring-dokumentaatio coodiin google-formaatilla
+- eriytetty tietokannan polun ja tietokantatiedoston validointi omaan tiedostoonsa src/tools/db_validator.py
+  - luotu myös testit
+  - lisätty työkalutiedostoon docstring-dokumentaatiota
+  - päivitetty importit ja funktiokutsut DatabaseHandlerissa (src/services/db_handler.py)
+- eriytetty aikaleimojen luonti omaan tiedostoonsa src/tools/date_tools.py
+  - luotu myös testit
+  - lisätty työkalutiedostoon docstring-dokumentaatiota
+  - päivitetty importit ja funktiokutsut Statsissa (src/ui/stats.py)
+- luotu Middleware (src/services/middleware.py), joka hoitaa käyttöliittymän ja DatabaseHandlerin välisen kommunikaation
+  - muutettu Stats käyttämään Middlewarea suoran DatabaseHandler-kytkennän sijaan
+  - muutettu AddProduct käyttämään Middlewarea suoran DatabaseHandler-kytkennän sijaan

@@ -1,12 +1,16 @@
 
 from tkinter import Tk, ttk, constants
-import datetime
+from tools.date_tools import get_current_date
+from tools.date_tools import get_soon_exp_date
 
-
+"""
+class implementation for Stats, class responsible for viewing
+statistics view in the UI
+"""
 class Stats:
-    def __init__(self, root, dbh, to_add, to_list):
+    def __init__(self, root, middleware, to_add, to_list):
         self._root = root
-        self._db = dbh
+        self._middleware = middleware
         self._go_to_add = to_add
         self._go_to_list = to_list
         self._initialize()
@@ -18,33 +22,16 @@ class Stats:
         self._frame.pack(fill=constants.X)
 
     def update(self):
-        self._current_date = datetime.date.today()
-        self._exp_soon_date = self._current_date + datetime.timedelta(days=2)
-        _types = self._db.get_types()
-        _number_of_products = self._db.get_productcount()
-        _numbers_by_types = []
-        for t in _types:
-            count = self._db.get_productcount(
-                product_type=t[1], distinct=False)
-            _numbers_by_types.append((t[1], t[0], count))
-        _expiring_products = self._db.get_products_by_storage_life(
-            expiring=True,
-            exp=datetime.datetime(
-                self._exp_soon_date.year,
-                self._exp_soon_date.month,
-                self._exp_soon_date.day).timestamp())
-        _expiring_products_total = 0
-        for e in _expiring_products:
-            _expiring_products_total += e[0]
-        _expired_products = self._db.get_products_by_storage_life(
-            expiring=False,
-            exp=datetime.datetime(
-                self._current_date.year,
-                self._current_date.month,
-                self._current_date.day).timestamp())
-        _expired_products_total = 0
-        for e in _expired_products:
-            _expired_products_total += e[0]
+        self._current_date = get_current_date()
+        self._exp_soon_date = get_soon_exp_date(days_to_add=2)
+
+        _number_of_products = self._middleware.get_product_count()
+        
+        _numbers_by_types = self._middleware.get_numbers_by_types()
+        _expiring_products = self._middleware.get_expiring_products(self._exp_soon_date)
+        _expiring_products_total = self._middleware.get_expiring_products_count(self._exp_soon_date)
+        _expired_products = self._middleware.get_expired_products(self._current_date)
+        _expired_products_total = self._middleware.get_expired_products_count(self._current_date)
 
         self._frame = ttk.Frame(master=self._root)
         label = ttk.Label(master=self._frame, text="Tilastointi")

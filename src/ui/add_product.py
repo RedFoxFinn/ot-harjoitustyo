@@ -3,15 +3,32 @@
 import tkinter as tk
 from tkinter import ttk, messagebox, constants
 from tkcalendar import DateEntry
-import datetime
-import re
 
+from tools.date_tools import get_current_date
+from tools.date_tools import get_exp_timestamp
+from tools.regex_validators import selector_type_validation
+from tools.builders import build_id_from_selector_number
 
+_type_default = [f"{0:02d} - valitse tyyppi"]
+_subtype_default = [f"{0:02d} - valitse alatyyppi"]
 class AddProduct:
-    _type_default = [f"{0:02d} - valitse tyyppi"]
-    _subtype_default = [f"{0:02d} - valitse alatyyppi"]
+    """
+    Luokka, jonka vastuulla on esittää lisäysnäkymä ja suorittaa
+    talletettavien tietojen tallettamiseksi DatabaseHandlerin kutsun
+    """
 
-    def __init__(self, root, dbh, to_stats, to_list):
+    def __init__(self, root, middleware, to_stats, to_list):
+        """
+        Luokan konstruktorifunktio, joka luo lisäysnäkymän
+
+        Args:
+            root: sovelluksen ikkuna
+            dbh: DatabaseHandler, jota sovellus käyttää
+            to_stats: funktio, jolla voidaan siirtyä
+              tilastointinäkymään
+            to_list: funktio, jolla voidaan siirtyä
+              listausnäkymään
+        """
         self._root = root
         self._name = None
         self._type = None
@@ -19,7 +36,7 @@ class AddProduct:
         self._storage_life = None
         self._number_of = None
         self._frame = None
-        self._db = dbh
+        self._middleware = middleware
         self._back_to_stats = to_stats
         self._go_to_list = to_list
         self._clicked_type = tk.StringVar(self._root)
@@ -37,64 +54,54 @@ class AddProduct:
     ]
 
     def _click_product(self):
+        """
+        Luokan työkalufunktio, joka on vastuussa DatabaseHandlerin
+        kutsumisesta tuoterivin lisäämiseksi sovelluksen tietokantaan
+        """
         _name = self._name.get()
         _type = self._clicked_type.get()
         _storage_life = self._storage_life.get_date()
         _number_of = int(self._number_of.get())
-        _subtype = 0
+        _subtype = "00"
         if self._subtype != None and bool(self._subtype.grid_info()):
             _subtype = self._clicked_subtype.get()
         else:
-            _subtype = 0
-        success = False
+            _subtype = "00"
 
-        def _get_type():
-            _t = _type[:2]
-            if _t[0] == '0':
-                return int(_t[1])
-            else:
-                return int(f"{_t[0]}{_t[1]}")
-
-        def _get_subtype():
-            if self._subtype == None:
-                return _subtype
-            _s = _subtype[:2]
-            if _s[0] == '0':
-                return int(_s[1])
-            else:
-                return int(f"{_s[0]}{_s[1]}")
-
-        success = self._db.add_product(
-            name=_name, type_of=_get_type(),
-            storage_life=datetime.datetime(
-                _storage_life.year, _storage_life.month, _storage_life.day).timestamp(),
-            subtype=_get_subtype(), count=_number_of)
+        success = self._middleware.add_product(
+            pname=_name, ptype=build_id_from_selector_number(_type[:2]), pexp=get_exp_timestamp(
+                _storage_life.year, _storage_life.month, _storage_life.day),
+            psubtype=build_id_from_selector_number(_subtype[:2]), pcount=_number_of)
 
         if success:
             self._name.delete(0, 'end')
             self._number_of.delete(0, 'end')
-            self._clicked_type.set(self._type_default[0])
+            self._clicked_type.set(_type_default[0])
             messagebox.showinfo("Lisäys", f"{_name} lisäys onnistui!")
 
     def destroy(self):
+        """
+        Luokan funktio, joka poistaa luokan ilmentymän käyttöliittymästä
+        """
         self._frame.destroy()
 
     def pack(self):
+        """
+        Luokan funktio, joka paketoi luokan ilmentymän käyttöliittymässä näytettäväksi
+        """
         self._frame.pack(fill=constants.X)
 
     def _initialize(self):
-        _current_date = datetime.date.today()
+        _current_date = get_current_date(as_object=True)
 
         def _types():
-            types_in_db = self._type_default + \
-                [f"{t[1]:02d} - {t[0]}" for t in self._db.get_types()]
+            types_in_db = self._middleware.get_types_for_selector()
             self._clicked_type.set(types_in_db[0])
             return ttk.OptionMenu(self._frame, self._clicked_type, *types_in_db)
 
         def _subtypes(*args):
-            _subtypes_in_db = self._subtype_default + \
-                [f"{s[2]:02d} - {s[1]}" for s in self._db.get_subtypes()]
-            if re.search("Raaka-aineet", self._clicked_type.get()):
+            _subtypes_in_db = self._middleware.get_subtypes_for_selector()
+            if selector_type_validation(self._clicked_type.get()):
                 self._clicked_subtype.set(_subtypes_in_db[0])
                 self._subtype = ttk.OptionMenu(
                     self._frame, self._clicked_subtype, *_subtypes_in_db)

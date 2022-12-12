@@ -1,18 +1,24 @@
-# depends on sqlite3 database, import sqlite3 library for python3
-# additionally depends on re, package to use regular expressions
-# and datetime for timestamp requiring functionalities
+"""
+depends on sqlite3 database, import sqlite3 library for python3
+additionally depends on re, package to use regular expressions
+and datetime for timestamp requiring functionalities
+"""
 
 import sqlite3
-import re
 import os
 import datetime
 
-# class implementation for Database_handler, class that will handle all interaction with sql-db
+from tools.db_validator import validate_database_path
+from tools.db_validator import validate_database_existence
 
-
+"""
+class implementation for Database_handler, class that will handle all interaction with sql-db
+"""
 class DatabaseHandler:
-  # protected private variable for class that predefines
-  # strings for table creation step of a new database
+    """
+    protected private variable for class that predefines
+    strings for table creation step of a new database
+    """
     __table_creation = [
         """CREATE TABLE Products (
             id INTEGER PRIMARY KEY,
@@ -62,35 +68,22 @@ class DatabaseHandler:
         "Raaka-aineet"
     ]
 
-    # protected private variable for checking the database path
-    __db_path_re = ["src/services/", ".db"]
-
-    # protected private function to check validity of database path string
-    # minimum length 17 characters (path + '.db' + db file name at least 1 character)
-    # regular expressions: path contains "src/database/" path and file type extension '.db'
-    def __check_db_path(self, db_str: str):
-        str_length = bool(len(db_str) >= 17)
-        str_pt1_validity = bool(re.search(self.__db_path_re[0], db_str))
-        str_pt2_validity = bool(re.search(self.__db_path_re[1], db_str))
-
-        return bool(str_length and str_pt1_validity and str_pt2_validity)
-
-    def __check_validity(self, db_path=None):
-        return self.__check_db_path(db_path)
-
+    
     def __fetch_typeid(self, typename: str):
         return self._db.execute("SELECT id FROM Types WHERE type_name=?", [typename]).fetchone()
 
-    # class initialization
-    # > if db_set is True
-    # > database contains valid database path
-    # > path leads to valid file
-    # >> connect to database file
-    # > else create new database with automatic table creation
+    """
+    class initialization
+    > if db_set is True
+    > database contains valid database path
+    > path leads to valid file
+    >> connect to database file
+    > else create new database with automatic table creation
+    """
     def __init__(self, db_set: bool, database: str):  # pylint: disable=too-many-statements
-        if db_set and self.__check_validity(database) and os.path.isfile(database):
+        if db_set and validate_database_path(database) and validate_database_existence(database):
             self._db = sqlite3.connect(database)
-        elif not db_set and database is not None and self.__check_db_path(database):
+        elif not db_set and database is not None and validate_database_path(database):
             self._db = sqlite3.connect(database)
             for item in self.__table_creation:
                 try:
@@ -120,10 +113,12 @@ class DatabaseHandler:
                 self.add_subtype(item, __type_id)
         self._db.isolation_level = None
 
-    # function for adding new product with its name,
-    # type, subtype and storage_life as arguments
-    # name (string), type (int) and storage_life (int) needed,
-    # subtype (int) optional, count (int) optional
+    """
+    function for adding new product with its name,
+    type, subtype and storage_life as arguments
+    name (string), type (int) and storage_life (int) needed,
+    subtype (int) optional, count (int) optional
+    """
     def add_product(self,
                     name: str,
                     type_of: int,
@@ -156,10 +151,12 @@ class DatabaseHandler:
             # therefore I was required to add disable
             return False
 
-    # function for fetching products from db
-    # returns None if no product in db
-    # joins Product with Type and conditionally joins with Subtype
-    # if Product.subtype has value greater than 0
+    """
+    function for fetching products from db
+    returns None if no product in db
+    joins Product with Type and conditionally joins with Subtype
+    if Product.subtype has value greater than 0
+    """
     def get_products(self):
         products = self._db.execute("""
             SELECT
@@ -183,7 +180,9 @@ class DatabaseHandler:
         _date = datetime.date.today()+datetime.timedelta(days=2)
         return datetime.datetime(_date.year, _date.month, _date.day).timestamp()
 
-    # function for fetching expiring or expired products
+    """
+    function for fetching expiring or expired products
+    """
     def get_products_by_storage_life(
             self,
             expiring: bool = True,
@@ -199,7 +198,9 @@ class DatabaseHandler:
         """, [exp]).fetchall()
         return products
 
-    # function for fetching number of products in db
+    """
+    function for fetching number of products in db
+    """
     def get_productcount(self, product_type: int = None, distinct: bool = True):
         count = 0
         if distinct:
@@ -229,7 +230,9 @@ class DatabaseHandler:
                 count += p_x[1]
         return count
 
-    # function for removing product from db
+    """
+    function for removing product from db
+    """
     def remove_product(self, product_id: int):
         try:
             self._db.execute("DELETE FROM Products WHERE id=?", [product_id])
@@ -239,7 +242,9 @@ class DatabaseHandler:
             # therefore I was required to add disable
             return False
 
-    # function for updating number of products with certain id
+    """
+    function for updating number of products with certain id
+    """
     def update_count(self, product_id: int, change: int = 1, subtract: bool = True):
         _product = self._db.execute("""
             SELECT id, number_of FROM Products WHERE id=?
@@ -267,8 +272,10 @@ class DatabaseHandler:
                 # therefore I was required to add disable
                 return False
 
-    # function for adding new type with its name as argument
-    # optional argument subtype (integer which is the id of subtype)
+    """
+    function for adding new type with its name as argument
+    optional argument subtype (integer which is the id of subtype)
+    """
     def add_type(self, name: str):
         try:
             self._db.execute(
@@ -279,19 +286,25 @@ class DatabaseHandler:
             # therefore I was required to add disable
             return False
 
-    # function for fetching types from db
-    # returns None if no types in db
+    """
+    function for fetching types from db
+    returns None if no types in db
+    """
     def get_types(self):
         types = self._db.execute("SELECT type_name, id FROM Types").fetchall()
         return types if len(types) > 0 else None
 
-    # function for fetching number of types in db
+    """
+    function for fetching number of types in db
+    """
     def get_typecount(self):
         count = self._db.execute("SELECT count(*) FROM Types").fetchall()[0][0]
         return count
 
-    # function for adding new subtype with its name as argument
-    # adding fails, if exact same name already exists in db
+    """
+    function for adding new subtype with its name as argument
+    adding fails, if exact same name already exists in db
+    """
     def add_subtype(self, name: str, type_of: int):
         try:
             self._db.execute("""
@@ -303,21 +316,20 @@ class DatabaseHandler:
             # therefore I was required to add disable
             return False
 
-    # function for fetching subtypes from db
-    # returns None if no subtypes in db
+    """
+    function for fetching subtypes from db
+    returns None if no subtypes in db
+    """
     def get_subtypes(self):
         subtypes = self._db.execute("""
             SELECT type_name, subtype_name, S.id FROM Subtypes S LEFT JOIN Types T ON S.type=T.id
         """).fetchall()
         return subtypes if len(subtypes) > 0 else None
 
-    # function for fetching number of subtypes in db
+    """
+    function for fetching number of subtypes in db
+    """
     def get_subtypecount(self):
         count = self._db.execute(
             "SELECT count(*) FROM Subtypes").fetchall()[0][0]
         return count
-
-    # function for deleting a subtype from db
-    # with its name as argument
-
-    # function for returning db status (???)
