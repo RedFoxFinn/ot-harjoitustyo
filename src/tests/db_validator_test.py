@@ -7,6 +7,7 @@ from tools.db_validator import validate_database_existence
 test_db_paths = ["src/tests/test_db.db",
                  "src/services/test_db.db"]
 
+
 class Test_validate_database_path(unittest.TestCase):
     def test_path_is_invalid(self):
         resp = validate_database_path(test_db_paths[0])
@@ -17,6 +18,7 @@ class Test_validate_database_path(unittest.TestCase):
         resp = validate_database_path(test_db_paths[1])
         self.assertEqual(type(resp), bool)
         self.assertEqual(resp, True)
+
 
 class Test_validate_database_existence(unittest.TestCase):
     def _remove_db_file(self):

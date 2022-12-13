@@ -6,11 +6,13 @@ from tkcalendar import DateEntry
 
 from tools.date_tools import get_current_date
 from tools.date_tools import get_exp_timestamp
-from tools.regex_validators import selector_type_validation
+from tools.regex_validators import selector_type_validation_for_ingredient
 from tools.builders import build_id_from_selector_number
 
 _type_default = [f"{0:02d} - valitse tyyppi"]
 _subtype_default = [f"{0:02d} - valitse alatyyppi"]
+
+
 class AddProduct:
     """
     Luokka, jonka vastuulla on esittää lisäysnäkymä ja suorittaa
@@ -101,7 +103,7 @@ class AddProduct:
 
         def _subtypes(*args):
             _subtypes_in_db = self._middleware.get_subtypes_for_selector()
-            if selector_type_validation(self._clicked_type.get()):
+            if selector_type_validation_for_ingredient(self._clicked_type.get()):
                 self._clicked_subtype.set(_subtypes_in_db[0])
                 self._subtype = ttk.OptionMenu(
                     self._frame, self._clicked_subtype, *_subtypes_in_db)

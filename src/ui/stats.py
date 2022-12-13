@@ -7,6 +7,8 @@ from tools.date_tools import get_soon_exp_date
 class implementation for Stats, class responsible for viewing
 statistics view in the UI
 """
+
+
 class Stats:
     def __init__(self, root, middleware, to_add, to_list):
         self._root = root
@@ -26,12 +28,16 @@ class Stats:
         self._exp_soon_date = get_soon_exp_date(days_to_add=2)
 
         _number_of_products = self._middleware.get_product_count()
-        
+
         _numbers_by_types = self._middleware.get_numbers_by_types()
-        _expiring_products = self._middleware.get_expiring_products(self._exp_soon_date)
-        _expiring_products_total = self._middleware.get_expiring_products_count(self._exp_soon_date)
-        _expired_products = self._middleware.get_expired_products(self._current_date)
-        _expired_products_total = self._middleware.get_expired_products_count(self._current_date)
+        _expiring_products = self._middleware.get_expiring_products(
+            self._exp_soon_date)
+        _expiring_products_total = self._middleware.get_expiring_products_count(
+            self._exp_soon_date)
+        _expired_products = self._middleware.get_expired_products(
+            self._current_date)
+        _expired_products_total = self._middleware.get_expired_products_count(
+            self._current_date)
 
         self._frame = ttk.Frame(master=self._root)
         label = ttk.Label(master=self._frame, text="Tilastointi")

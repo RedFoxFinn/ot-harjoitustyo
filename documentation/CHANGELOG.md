@@ -56,3 +56,4 @@
 - luotu Middleware (src/services/middleware.py), joka hoitaa käyttöliittymän ja DatabaseHandlerin välisen kommunikaation
   - muutettu Stats käyttämään Middlewarea suoran DatabaseHandler-kytkennän sijaan
   - muutettu AddProduct käyttämään Middlewarea suoran DatabaseHandler-kytkennän sijaan
+- luotu testejä uusille työkaluille

@@ -4,6 +4,7 @@ import datetime
 from tools.date_tools import get_current_date
 from tools.date_tools import get_soon_exp_date
 
+
 class Test_date_tools(unittest.TestCase):
     current_date = datetime.date.today()
     exp_soon_date = current_date + datetime.timedelta(days=5)
@@ -16,7 +17,7 @@ class Test_date_tools(unittest.TestCase):
 
     def test_get_current_date(self):
         stamp = get_current_date()
-        self.assertEqual(type(stamp),float)
+        self.assertEqual(type(stamp), float)
         self.assertEqual(stamp, self.current_timestamp)
 
     def test_get_current_date_as_object(self):
@@ -26,5 +27,5 @@ class Test_date_tools(unittest.TestCase):
 
     def test_get_soon_exp_date(self):
         stamp = get_soon_exp_date(days_to_add=5)
-        self.assertEqual(type(stamp),float)
+        self.assertEqual(type(stamp), float)
         self.assertEqual(stamp, self.exp_soon_timestamp)

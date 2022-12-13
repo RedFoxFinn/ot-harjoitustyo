@@ -4,10 +4,11 @@
 from tkinter import Tk
 
 from services.db_handler import DatabaseHandler
+from services.middleware import Middleware
 from ui.add_product import AddProduct
 from ui.stats import Stats
 from ui.list_products import ListProducts
-from services.middleware import Middleware
+
 
 class PantryUI:
     """
@@ -17,10 +18,6 @@ class PantryUI:
     yhdistetyn tietokannan näille tarjoaminen
     """
 
-    """
-    class initialization
-    connect or create database
-    """
     def __init__(self, root, db_path):
         """
         Luokan konstruktorifunktio, joka luo sovelluksen käyttöliittymän
@@ -33,7 +30,7 @@ class PantryUI:
         self._root = root
         self._current_view = None
         self._dbh = DatabaseHandler(True, db_path)
-        self._middleware = Middleware(root, self._dbh)
+        self._middleware = Middleware(self._dbh)
 
     # start Pantry application
     def start(self):

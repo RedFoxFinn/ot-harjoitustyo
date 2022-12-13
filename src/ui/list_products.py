@@ -7,7 +7,7 @@ from tkinter import ttk, constants
 from tools.date_tools import expiration_check
 from tools.date_tools import convert_timestamp
 from tools.highlights import highlight_expired_label
-from tools.regex_validators import selector_type_validation
+from tools.regex_validators import selector_type_validation_for_ingredient
 
 filtering = [
     'Kaikki',
@@ -16,12 +16,14 @@ filtering = [
     'Raaka-aineet'
 ]
 
+
 class ListProducts:
     """
     Luokka, jonka vastuulla on esittää sovelluksen tietokantaan
     talletettujen tuotteiden listaus ja listalla olevien tuotteiden
     lukumäärän lisäyksen, vähentämisen ja poistamisen toiminnot
     """
+
     def __init__(self, root, middleware, to_stats, to_add, refresh):
         """
         Luokan konstruktorifunktio, joka luo tuotelistauksen
@@ -44,7 +46,7 @@ class ListProducts:
         self._filtering = filtering[0]
         self._update()
 
-    def _update_product(self, id: int, remove: bool = False, change: int = 1, subtract: bool = True):
+    def _update_product(self, pid: int, remove: bool = False, change: int = 1, subtract: bool = True):
         """
         class function for product row changes triggered by add, subtract and remove -buttons
 
@@ -54,9 +56,11 @@ class ListProducts:
             change: int, change in number of products on row
             subtract: bool, to subtract or add
         """
-        result = self._middleware.update_product(id=id, remove=remove, change=change, subtract=subtract)
+        result = self._middleware.update_product(
+            pid=pid, remove=remove, change=change, subtract=subtract)
 
-        if result: self._refresh()
+        if result:
+            self._refresh()
 
     def _update(self):
         """
@@ -86,7 +90,7 @@ class ListProducts:
                     text=f"{convert_timestamp(item[2])}",
                     foreground=highlight
                 ).grid(row=index+1, column=3, padx=4, pady=4)
-                if selector_type_validation(item[4]):
+                if selector_type_validation_for_ingredient(item[4]):
                     ttk.Label(self._frame, text=f"{item[6]}").grid(
                         row=index+1, column=4, padx=4, pady=4)
                 else:
@@ -94,27 +98,27 @@ class ListProducts:
                         row=index+1, column=4, padx=4, pady=4)
                 if expiration_check(item[2]):
                     ttk.Button(self._frame, command=lambda: self._update_product(
-                        id=item[0],
+                        pid=item[0],
                         remove=True),
                         text="Poista").grid(
                             row=index+1, column=7, padx=4, pady=4)
                 else:
                     ttk.Button(self._frame, command=lambda: self._update_product(
-                        id=item[0],
+                        pid=item[0],
                         remove=False,
                         change=1,
                         subtract=True),
                         text="-").grid(
                             row=index+1, column=5, padx=4, pady=4)
                     ttk.Button(self._frame, command=lambda: self._update_product(
-                        id=item[0],
+                        pid=item[0],
                         remove=False,
                         change=1,
                         subtract=False),
                         text="+").grid(
                             row=index+1, column=6, padx=4, pady=4)
                     ttk.Button(self._frame, command=lambda: self._update_product(
-                        id=item[0],
+                        pid=item[0],
                         remove=True),
                         text="Poista").grid(
                             row=index+1, column=7, padx=4, pady=4)
