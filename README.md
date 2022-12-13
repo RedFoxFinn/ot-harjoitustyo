@@ -15,3 +15,5 @@ Kurssiprojektina toteutettu inventaariosovellus Pantry
 [Käyttöohje](https://github.com/RedFoxFinn/ot-harjoitustyo/blob/main/documentation/manual.md)
 
 [Viikon 5 release](https://github.com/RedFoxFinn/ot-harjoitustyo/releases/tag/viikko5)
+
+[Viikon 6 release](https://github.com/RedFoxFinn/ot-harjoitustyo/releases/tag/viikko6)
