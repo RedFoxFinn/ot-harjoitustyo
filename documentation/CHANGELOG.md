@@ -57,3 +57,12 @@
   - muutettu Stats käyttämään Middlewarea suoran DatabaseHandler-kytkennän sijaan
   - muutettu AddProduct käyttämään Middlewarea suoran DatabaseHandler-kytkennän sijaan
 - luotu testejä uusille työkaluille
+
+## viikko 7
+
+- korjattu testit middleware_test.py: test_middleware_x -sarja
+- päivitetty sovelluslogiikan kuvaaja
+- päivitetty pakkauskaavion kuvaaja
+- päivitetty vaatimuusmäärittelydokumentti
+- kirjattu testausdokumentti
+- README.md päivitys

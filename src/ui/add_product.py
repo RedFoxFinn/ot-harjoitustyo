@@ -60,6 +60,7 @@ class AddProduct:
         Luokan työkalufunktio, joka on vastuussa DatabaseHandlerin
         kutsumisesta tuoterivin lisäämiseksi sovelluksen tietokantaan
         """
+        success = False
         _name = self._name.get()
         _type = self._clicked_type.get()
         _storage_life = self._storage_life.get_date()
@@ -70,10 +71,13 @@ class AddProduct:
         else:
             _subtype = "00"
 
-        success = self._middleware.add_product(
+        if len(_name) > 0 and not _type.find('00') > -1 and _number_of > 0:
+            success = self._middleware.add_product(
             pname=_name, ptype=build_id_from_selector_number(_type[:2]), pexp=get_exp_timestamp(
                 _storage_life.year, _storage_life.month, _storage_life.day),
             psubtype=build_id_from_selector_number(_subtype[:2]), pcount=_number_of)
+        else:
+            messagebox.showwarning("Lisäys", f"{_name} lisäys ei onnistunut. Tarkista syötteesi oikeellisuus.")
 
         if success:
             self._name.delete(0, 'end')

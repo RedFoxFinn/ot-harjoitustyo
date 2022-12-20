@@ -40,7 +40,7 @@ Puolivalmiste = ruokajauhe, juomajauhe, juomatiiviste tai "lisää vain vesi" -t
 
 #### Listanäkymä
 
-Listanäkymässä näytetään tuotteet listalla aakkosellisessa järjestyksessä tai säilyvyyden mukaan lyhimmän säilyvyyden omaavat ensimmäisinä. Tuotteita tulee voida suodattaa tyypin mukaan. Mikäli useampi tuote, joilla sama säilyvyysaika, näytetään lukumäärä. Näkymästä voidaan poistaa tuotteita.
+Listanäkymässä näytetään tuotteet listalla säilyvyyden mukaan lyhimmän säilyvyyden omaavat ensimmäisinä ja toissijaisesti tuotteen nimikkeen mukaan aakkosellisesti järjestettynä. Tuotteita ei nykyisessä versiossa voida suodattaa. Tuoterivillä näytetään tuotteiden lukumäärä. Näkymästä voidaan poistaa tuotteita sekä lisätä tai vähentää lukumäärää voimassaolevilla tuotteilla.
 
 ## Jatkokehitysideat
 
@@ -51,6 +51,7 @@ Jatkokehityksessä voidaan toteuttaa mm:
 - jaettu inventaario
 - käyttäjäroolit
 - tuotteelle voidaan merkitä täydennystarve
+- tuotteiden suodatus listausnäkymässä
 
 ## Sovelluksen rajoitteet
 
@@ -99,7 +100,7 @@ Following information are required and associated to the product:
 
 #### List view
 
-List products alphabetically or by their shelf life starting from shortest in list view. Products can be sorted by their type. If multiple products with same self life, show their count. Products can be removed from list view.
+List products by their shelf life starting from shortest in list view and secondary sorting by their name. Products can not be sorted in this version of the software. Number of products on the entry are shown. Entry can be removed from the list view. The number of products on entry can be increased and decreased for products that are not expired in the list view.
 
 ## Ideas for further development
 
@@ -111,6 +112,7 @@ In later development phases these ideas could be implemented:
 - shared inventory
 - user roles
 - request supplies for product
+- filtering of the products in the list view
 
 ## Software limitations
 

@@ -69,15 +69,15 @@ class Middleware:
             list_of=self._db.get_subtypes(), for_type=False)
         return subtypes
 
-    def add_product(self, pname, ptype, pexp, psubtype, pcount):
-        res = self._db.add_product(
+    def add_product(self, pname: str, ptype: int, pexp: int, psubtype: int = 0, pcount: int = 1):
+        result = self._db.add_product(
             name=pname,
             type_of=ptype,
             storage_life=pexp,
             subtype=psubtype,
             count=pcount
         )
-        return res
+        return result
 
     def update_product(
             self,

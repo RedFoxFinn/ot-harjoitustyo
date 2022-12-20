@@ -17,18 +17,25 @@ test_db_products = [
     ['Tattarijauho', 3, 1681067257, 20, 2]
 ]
 
-test_product_for_add = (
-    'OddlyGoo veggie slice', 2, 1281067257, 0, 2
-)
+test_product_for_add = {
+    'name': 'OddlyGoo veggie slice',
+    'type': 2,
+    'exp': 1281067257,
+    'subtype': 0,
+    'count': 2
+}
 
 
-class Test_middleware(unittest.TestCase):
-    _dbh = DatabaseHandler(False, test_db_path)
-    _mw = Middleware(_dbh)
+class Test_Middleware(unittest.TestCase):
+    def setUp(self):
+        if os.path.isfile('src/services/test_db.db'):
+            os.remove('src/services/test_db.db')
+        self._dbh = DatabaseHandler(False, test_db_path)
+        self._mw = Middleware(self._dbh)
 
-    for product in test_db_products:
-        _mw.add_product(pname=product[0], ptype=product[1],
-                        pexp=product[2], psubtype=product[3], pcount=product[4])
+        for product in test_db_products:
+            self._mw.add_product(pname=product[0], ptype=product[1],
+                                 pexp=product[2], psubtype=product[3], pcount=product[4])
 
     def test_middleware_existent(self):
         self.assertEqual(type(self._mw), Middleware)
@@ -101,34 +108,55 @@ class Test_middleware(unittest.TestCase):
 
     def test_middleware_x_add_product(self):
         result = self._mw.add_product(
-            pname=test_product_for_add[0],
-            ptype=test_product_for_add[1],
-            pexp=test_product_for_add[2],
-            psubtype=test_product_for_add[3],
-            pcount=test_product_for_add[4]
+            pname=test_product_for_add['name'],
+            ptype=test_product_for_add['type'],
+            pexp=test_product_for_add['exp'],
+            psubtype=test_product_for_add['subtype'],
+            pcount=test_product_for_add['count']
         )
         self.assertEqual(type(result), bool)
         self.assertEqual(result, True)
 
     def test_middleware_x_update_product_add(self):
+        self._mw.add_product(
+            pname=test_product_for_add['name'],
+            ptype=test_product_for_add['type'],
+            pexp=test_product_for_add['exp'],
+            psubtype=test_product_for_add['subtype'],
+            pcount=test_product_for_add['count']
+        )
         result = self._mw.update_product(pid=7, change=2, subtract=False)
         self.assertEqual(type(result), bool)
         self.assertEqual(result, True)
         products = self._mw.get_products()
         test_product = [elem for elem in products if elem[0] == 7]
         self.assertEqual(len(test_product), 1)
-        self.assertEqual(test_product[0][3], test_product_for_add[4]+2-1)
+        self.assertEqual(test_product[0][3], test_product_for_add['count']+2)
 
     def test_middleware_x_update_product_subtract(self):
+        self._mw.add_product(
+            pname=test_product_for_add['name'],
+            ptype=test_product_for_add['type'],
+            pexp=test_product_for_add['exp'],
+            psubtype=test_product_for_add['subtype'],
+            pcount=test_product_for_add['count']
+        )
         result = self._mw.update_product(pid=7, change=1, subtract=True)
         self.assertEqual(type(result), bool)
         self.assertEqual(result, True)
         products = self._mw.get_products()
         test_product = [elem for elem in products if elem[0] == 7]
         self.assertEqual(len(test_product), 1)
-        self.assertEqual(test_product[0][3], test_product_for_add[4]+2-1)
+        self.assertEqual(test_product[0][3], test_product_for_add['count']-1)
 
     def test_middleware_x_update_product_remove(self):
+        self._mw.add_product(
+            pname=test_product_for_add['name'],
+            ptype=test_product_for_add['type'],
+            pexp=test_product_for_add['exp'],
+            psubtype=test_product_for_add['subtype'],
+            pcount=test_product_for_add['count']
+        )
         result = self._mw.update_product(pid=7, remove=True)
         self.assertEqual(type(result), bool)
         self.assertEqual(result, True)
