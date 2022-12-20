@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pantry"
-version = "0.1.0"
+version = "1.0.0"
 description = ""
 authors = ["Antti Aarnio <laborantti.antti@gmail.com>"]
 readme = "README.md"
